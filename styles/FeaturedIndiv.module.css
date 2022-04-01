@@ -1,0 +1,51 @@
+.wrapperFeatured{
+  padding: 1rem;
+  border: 1px solid #d2d7df;
+  border-radius: 10px;
+  display: flex;
+  margin-block: 2rem;
+  width: min(90%, 480px);
+  gap: 1rem;
+}
+
+.FeaturedImg{
+  flex-basis: 30%;
+}
+
+.FeaturedBody{
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.FeaturedBody img{
+  display: inline-block;
+  width: 15px;
+  margin-right: 1rem;
+}
+
+.FeaturedTitle{
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.FeaturedAuthor{
+  font-size: 0.9rem;
+}
+
+.imageWrapper{
+  position: relative;
+  width: 100px;
+  min-height: 100px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px 0px rgb(52 53 54 / 24%);
+  transition: transform 300ms ease-in-out;
+}
+
+.imageWrapper:hover{
+  transform: scale(0.95);
+}

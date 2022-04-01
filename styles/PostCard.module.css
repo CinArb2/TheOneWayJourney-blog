@@ -1,0 +1,58 @@
+.cardWrapper{
+  width: min(90%, 800px);
+  margin: 5rem auto;
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid #d2d7df;
+}
+
+
+.buttonCard{
+  display: block;
+  border: none;
+  background-color: rgb(89, 94, 246);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  margin: 2rem auto;
+  cursor: pointer;
+  transition: background-color 400ms ease-in-out,
+  color 400ms ease-in-out;
+  border: 1px solid rgb(89, 94, 246);
+  box-shadow: 0px 10px 20px 4px rgb(89 96 255 / 35%);
+}
+
+.buttonCard:hover{
+  color: rgb(89, 94, 246);
+  background-color: transparent;
+  border: 1px solid rgb(89, 94, 246);
+
+}
+
+.title{
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.imageWrapper{
+  position: relative;
+  transform: scale(1.2);
+  width: 85%;
+  margin: 0 auto;
+  min-height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px 0px rgb(52 53 54 / 24%);
+}
+
+.imageWrapper img{
+  transition: transform 500ms ease-in-out;
+}
+
+.imageWrapper:hover img{
+  transform: scale(1.07)
+}
+
+.PostContent{
+  color: #656363c2;
+}

@@ -1,0 +1,39 @@
+.Navbar{
+  width: 100%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem;
+  border-bottom: 1px solid #88888854;
+  flex-wrap: wrap;
+}
+
+.Navbar a{
+  position: relative;
+}
+
+.Navbar a::before{
+  content: "";
+  height: 5px;
+  width: 0;
+  background-color: red;
+  position: absolute;
+  bottom: -60%;
+  transition: width 400ms ease;
+}
+
+
+.Navbar a:hover::before{
+  content: "";
+  height: 5px;
+  width: 80%;
+  background-color: red;
+  position: absolute;
+  bottom: -60%;
+}
+
+ 
+.logoContainer{
+  margin-block: 2rem;
+}
