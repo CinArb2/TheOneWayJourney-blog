@@ -1,7 +1,7 @@
-import style from '../styles/AsideHome.module.css'
+import style from '../styles/FeaturedPosts.module.css'
 import FeaturedIndiv from './FeaturedIndiv'
 
-const AsideHome = ({featuredPosts}) => {
+const FeaturedPosts = ({featuredPosts}) => {
   return (
     <div className={style.ContainerAside}>
       <h2 className={style.asideTitle}>Featured posts</h2>
@@ -14,4 +14,4 @@ const AsideHome = ({featuredPosts}) => {
   )
 }
 
-export default AsideHome
+export default FeaturedPosts

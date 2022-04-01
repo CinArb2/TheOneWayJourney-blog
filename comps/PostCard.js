@@ -16,14 +16,19 @@ const PostCard = ({ post }) => {
           alt="icon-logo"
           objectFit="cover"
           layout="fill"
-          />
+        />
+        <div className={style.textImgWrapper}>
+          {post.tags.nodes.map(tag => (
+            <span key={tag.tagId} className={style.tag}>{tag.name}</span>
+          ))}
+            <h2 className={style.title}> <span>{post.title}</span> </h2>
+        </div>
       </div>
     
-      <h2 className={style.title}>{post.title}</h2>
       <div className={style.PostContent}
         dangerouslySetInnerHTML={{__html: post.excerpt}}
       />
-      <span>Tags</span>
+      
       <Link href={`/post/${post.slug}`}>
         <button className={style.buttonCard}>Read More</button>
       </Link>

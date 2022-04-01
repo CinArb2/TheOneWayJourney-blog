@@ -16,33 +16,53 @@
   border-radius: 50px;
   margin: 2rem auto;
   cursor: pointer;
-  transition: background-color 400ms ease-in-out,
+  transition: background-color 400ms ease-in-out, box-shadow 400ms ease-in-out,
   color 400ms ease-in-out;
   border: 1px solid rgb(89, 94, 246);
   box-shadow: 0px 10px 20px 4px rgb(89 96 255 / 35%);
 }
 
 .buttonCard:hover{
-  color: rgb(89, 94, 246);
-  background-color: transparent;
-  border: 1px solid rgb(89, 94, 246);
-
+  color: white;
+  background-color: rgb(57, 56, 56);
+  border: 1px solid rgb(57, 56, 56);
+  box-shadow: none;
 }
 
-.title{
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+.textImgWrapper{
+  position: absolute;
+  bottom: 0;
+  text-align: left;
+  z-index: 4;
+  width: 100%;
+  padding: 20px;
+  word-wrap: break-word;
+}
+
+.title span{
+  background-color: white;
+  padding-inline: 0.3rem;
+}
+
+.tag{
+  display: inline-block;
+  background-color: red;
+  color: white;
+  margin-right: 0.5rem;
+  margin-block: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 3px;
 }
 
 .imageWrapper{
   position: relative;
-  transform: scale(1.2);
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
-  min-height: 300px;
+  min-height: 500px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 3px 10px 0px rgb(52 53 54 / 24%);
+  background-image: linear-gradient(0deg,#0F101575 0%,#01133F00 35%);
 }
 
 .imageWrapper img{
@@ -55,4 +75,5 @@
 
 .PostContent{
   color: #656363c2;
+  margin-block: 2rem;
 }

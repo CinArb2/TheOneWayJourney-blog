@@ -1,0 +1,41 @@
+.authorWrapper{
+  padding: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.authorImgWrapper{
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  top: 50%;
+  z-index: 5;
+  border: 8px solid white;
+}
+
+
+.bgImgWrapper{
+  position: relative;
+  height: 200px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px 0px rgb(52 53 54 / 24%);
+  background-image: linear-gradient(0deg,#0F101575 0%,#01133F00 35%);
+  z-index: -1;
+  bottom: -4rem;
+}
+
+.authorContent{
+  color: #7f7d7d;
+  margin-block: 2rem;
+}
+
+.authorTitle{
+  font-size: 2rem;
+}
