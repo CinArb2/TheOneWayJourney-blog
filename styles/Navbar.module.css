@@ -11,6 +11,12 @@
 
 .Navbar a{
   position: relative;
+  transition: color 400ms ease-in-out;
+}
+
+.Navbar a:hover{
+  position: relative;
+  color: red;
 }
 
 .Navbar a::before{
@@ -20,20 +26,47 @@
   background-color: red;
   position: absolute;
   bottom: -60%;
-  transition: width 400ms ease;
+  right: 50%;
+  transition: width 400ms ease-in-out;
 }
-
 
 .Navbar a:hover::before{
   content: "";
   height: 5px;
-  width: 80%;
+  width: 50%;
   background-color: red;
   position: absolute;
   bottom: -60%;
+  border-radius: 10px;
+}
+
+.Navbar a::after{
+  content: "";
+  height: 5px;
+  width: 0;
+  background-color: red;
+  position: absolute;
+  bottom: -60%;
+  left: 50%;
+  transition: width 400ms ease-in-out;
+  border-radius: 10px;
+}
+
+
+.Navbar a:hover::after{
+  content: "";
+  height: 5px;
+  width: 50%;
+  background-color: red;
+  position: absolute;
+  bottom: -60%;
+  
 }
 
  
 .logoContainer{
-  margin-block: 2rem;
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin: 2rem auto;
 }

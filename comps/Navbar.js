@@ -5,22 +5,20 @@ import style from '../styles/Navbar.module.css'
 const Navbar = ({menu, logo}) => {
   
   return (
-    <header>
-      <div style={{
-          display: "flex",
-          justifyContent: "center",
-      }}
-      className={style.logoContainer}
-      >
-        <Image
-        src={logo}
-        alt="icon-logo"
-        width={400}
-        height={129}
-        objectFit="cover"
-      />
-      </div>
+    <header href="/">
+      <Link href="/">
+      <a >
       
+      <div className={style.logoContainer}>
+        <Image
+          src={logo}
+          alt="icon-logo"
+          objectFit="cover"
+          layout="fill"
+          />
+      </div>
+      </a>
+      </Link>
       <nav className={style.Navbar}>
         {
           menu.map(menuItem => (

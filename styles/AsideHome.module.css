@@ -1,5 +1,19 @@
 .ContainerAside{
   position: sticky;
   top: 3rem;
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
+}
+
+.asideTitle{
+  position: relative;
+}
+
+.asideTitle::before{
+  content: "";
+  height: 5px;
+  width: 20%;
+  border-radius: 10px;
+  background-color: red;
+  position: absolute;
+  bottom: -40%;
 }

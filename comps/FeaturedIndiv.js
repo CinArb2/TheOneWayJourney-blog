@@ -4,15 +4,6 @@ import Image from 'next/image'
 const FeaturedIndiv = ({feat}) => {
   return (
     <div className={styles.wrapperFeatured}>
-      {/* <div className={styles.FeaturedImg}>
-        <Image
-          src={feat.featuredImage.node.sourceUrl}
-          alt="icon-logo"
-          width={100}
-          height={100}
-          objectFit="cover"
-          />
-      </div> */}
       <div className={styles.imageWrapper}>
         <Image
           src={feat.featuredImage.node.sourceUrl}
