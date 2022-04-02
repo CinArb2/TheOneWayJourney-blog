@@ -7,17 +7,16 @@ const Navbar = ({menu, logo}) => {
   return (
     <header href="/">
       <Link href="/">
-      <a >
-      
-      <div className={style.logoContainer}>
-        <Image
-          src={logo}
-          alt="icon-logo"
-          objectFit="cover"
-          layout="fill"
-          />
-      </div>
-      </a>
+        <a>
+          <div className={style.logoContainer}>
+            <Image
+              src={logo}
+              alt="icon-logo"
+              objectFit="cover"
+              layout="fill"
+              />
+          </div>
+        </a>
       </Link>
       <nav className={style.Navbar}>
         {

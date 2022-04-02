@@ -8,7 +8,7 @@ const Author = ({ author }) => {
     <div className={styles.authorWrapper}>
       <div className={styles.bgImgWrapper}>
         <Image
-          src="/bgAuthor.avif"
+          src="/bgAuthor.jpg"
           alt="icon-author"
           objectFit="cover"
           layout="fill"
