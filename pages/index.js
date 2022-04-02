@@ -1,5 +1,4 @@
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import Layout from '../comps/Layout'
 import { getAllMenus, getAllPostsForHome, getLogo, getFeaturedPosts, getAuthor, getTags } from '../lib/api'
 import PostCard from '../comps/PostCard'

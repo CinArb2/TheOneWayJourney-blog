@@ -1,7 +1,7 @@
 import style from '../styles/Tags.module.css'
 
 const Tags = ({ tags }) => {
-  console.log(tags)
+  
   return (
     <div className={style.tagContainer}>
       <h1 className={style.tagsTitle}>Tags</h1>
