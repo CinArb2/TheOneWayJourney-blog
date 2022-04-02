@@ -12,5 +12,8 @@
 .containerAside{
   width: 40%;
   margin: 0 auto;
-  position: relative;
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+  padding: 2rem;
 }

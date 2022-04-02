@@ -4,7 +4,6 @@
   border-radius: 10px;
   display: flex;
   margin-block: 2rem;
-  width: min(90%, 480px);
   gap: 1rem;
 }
 
