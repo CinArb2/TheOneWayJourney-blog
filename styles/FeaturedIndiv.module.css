@@ -1,6 +1,6 @@
 .wrapperFeatured{
   padding: 1rem;
-  border: 1px solid #dcdee2;
+  border: 1px solid #e3e7ef;
   border-radius: 10px;
   display: flex;
   margin-block: 2rem;
@@ -28,6 +28,34 @@
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   font-size: 1.2rem;
+  position: relative;
+  text-decoration: none;
+  transition: text-decoration 200ms ease;
+}
+
+.FeaturedTitle:hover{
+  color: red;
+  position: relative;
+  
+}
+
+.FeaturedTitle::before{
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  background-color: red;
+  bottom: -20%;
+  transition: width 200ms ease;
+}
+
+.FeaturedTitle:hover::before{
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 95%;
+  background-color: red;
+  bottom: -20%;
 }
 
 .FeaturedAuthor{
@@ -56,3 +84,4 @@
 .imageWrapper:hover img{
   transform: scale(1.2);
 }
+

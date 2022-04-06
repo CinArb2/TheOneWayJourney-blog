@@ -16,8 +16,8 @@ const FeaturedIndiv = ({ feat }) => {
       </div>
       <div className={styles.FeaturedBody} >
         <Link href={`/post/${feat.slug}`}>
-          <a >
-            <h3 className={styles.FeaturedTitle}>{feat.title}</h3>
+          <a className={styles.FeaturedTitle}>
+            <h3 >{feat.title}</h3>
           </a>
         </Link>
         <p className={styles.FeaturedAuthor}> <img src="https://img.icons8.com/ios/50/000000/user--v1.png"/>  {feat.author.node.name}</p>

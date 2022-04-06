@@ -4,7 +4,7 @@ import style from '../../styles/PostDetail.module.css'
 import Image from "next/image"
 
 const Details = ({ post, menu, logo }) => {
-  console.log(post)
+  
   return (
     <Layout menu={menu} logo={logo}>
       <div className={style.headerContent}>

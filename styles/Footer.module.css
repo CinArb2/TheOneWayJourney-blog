@@ -1,0 +1,36 @@
+.footer{
+  padding: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logoContainer{
+  position: relative;
+  width: 150px;
+  height: 80px;
+  margin: 2rem auto 0;
+}
+
+.footer h3{
+  position: relative;
+}
+
+.footer h3::before{
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  height: 4px;
+  width: 50%;
+  background-color: red;
+  border-radius: 10px;
+}
+
+.copyright{
+  font-size: 0.8rem;
+  margin-block: 2rem;
+  letter-spacing: 2px;
+}

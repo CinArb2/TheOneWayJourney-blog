@@ -13,7 +13,7 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags }) => {
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
           <div className={styles.containerTags}>
-            <h2>Browse tag:</h2>
+            <h2>Browsed tag:</h2>
             {
               posts[0].tags.nodes.map(tag => (
                 <span key={tag.tagId} className={styles.tagIndv}>{tag.name}</span>
@@ -37,7 +37,7 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags }) => {
 }
 
 export async function getStaticProps(context) {
-  console.log(context)
+  
   const res = await fetch('http://localhost/oneW/graphql', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},

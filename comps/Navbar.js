@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import style from '../styles/Navbar.module.css'
+import { useRouter } from 'next/router'
 
 const Navbar = ({menu, logo}) => {
-
+  const router = useRouter()
+  const currentRoute = router.asPath.length > 1 ? router.asPath + '/' : router.asPath
+  
   return (
     <header>
       <Link href="/">
@@ -21,9 +24,10 @@ const Navbar = ({menu, logo}) => {
       <nav className={style.Navbar}>
         {menu.map(menuItem => {
           const newPath = menuItem.node.path.slice(5)
+          
             return (
               <Link key={menuItem.node.id} href={newPath}>
-                <a>{menuItem.node.label}</a>
+                <a className={currentRoute === newPath ? style.active : ''}>{menuItem.node.label}</a>
               </Link>
             )
           })}
