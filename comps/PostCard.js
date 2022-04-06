@@ -28,7 +28,7 @@ const PostCard = ({ post }) => {
         dangerouslySetInnerHTML={{__html: post.excerpt}}
       />
       
-      <Link href={`/post/${post.slug}`}>
+      <Link href={`/post/${post.slug}/`}>
         <button className={style.buttonCard}>Read More</button>
       </Link>
     </div>

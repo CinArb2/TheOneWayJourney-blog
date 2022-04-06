@@ -12,6 +12,14 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags }) => {
     <Layout menu={menu} logo={logo}>
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
+          <div className={styles.containerTags}>
+            <h2>Browse tag:</h2>
+            {
+              posts[0].tags.nodes.map(tag => (
+                <span key={tag.tagId} className={styles.tagIndv}>{tag.name}</span>
+              ))
+            }
+          </div>
           {
             posts.map(post => (
               <PostCard key={post.id} post={post}/>
@@ -29,36 +37,36 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags }) => {
 }
 
 export async function getStaticProps(context) {
-  
+  console.log(context)
   const res = await fetch('http://localhost/oneW/graphql', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
       query: `
-      query categoryPosts($categoryName: String!) {
-        posts(where: {categoryName: $categoryName}, last: 30) {
-          nodes {
-            title
-            excerpt
-            slug
-            id
-            featuredImage {
-              node {
-                sourceUrl
-              }
+      query categoryPosts($tag: String = "") {
+      posts(where: {tag: $tag}, last: 30) {
+        nodes {
+          title
+          excerpt
+          slug
+          id
+          featuredImage {
+            node {
+              sourceUrl
             }
-            tags {
-              nodes {
-                name
-                tagId
-              }
+          }
+          tags {
+            nodes {
+              name
+              tagId
             }
           }
         }
       }
+    }
       `,
       variables: {
-        categoryName: context.params.categoryName,
+        tag: context.params.tagName,
       }
     }),
   })
@@ -89,11 +97,11 @@ export async function getStaticPaths() {
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
       query: `
-        query allCategories {
-          categories {
+        query allTags {
+          tags(last: 50) {
             nodes {
-              id
               slug
+              id
             }
           }
         }
@@ -103,10 +111,10 @@ export async function getStaticPaths() {
 
   const json = await response.json()
 
-  const categories = json.data.categories.nodes;
+  const tags = json.data.tags.nodes;
 
-  const paths = categories.map((category) => ({
-    params: {categoryName: category.slug},
+  const paths = tags.map((tag) => ({
+    params: {tagName: tag.slug},
   }))
   
   return {

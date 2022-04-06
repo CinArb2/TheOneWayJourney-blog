@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import style from '../styles/Tags.module.css'
 
 const Tags = ({ tags }) => {
@@ -7,7 +8,11 @@ const Tags = ({ tags }) => {
       <h1 className={style.tagsTitle}>Tags</h1>
       <div>
         {tags.map(tag => (
-          <span key={tag.id} className={style.tags}>{tag.name }</span>
+          <Link href={`/tag/${tag.slug}`} key={tag.id} >
+            <a>
+              <span className={style.tags}>{tag.name }</span>
+            </a>
+          </Link>
         ))}
       </div>
     </div>

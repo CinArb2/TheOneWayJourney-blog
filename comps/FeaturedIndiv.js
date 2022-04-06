@@ -1,7 +1,9 @@
 import styles from '../styles/FeaturedIndiv.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
-const FeaturedIndiv = ({feat}) => {
+const FeaturedIndiv = ({ feat }) => {
+  
   return (
     <div className={styles.wrapperFeatured}>
       <div className={styles.imageWrapper}>
@@ -13,9 +15,12 @@ const FeaturedIndiv = ({feat}) => {
           />
       </div>
       <div className={styles.FeaturedBody} >
-        <h3 className={styles.FeaturedTitle}>{feat.title}</h3>
+        <Link href={`/post/${feat.slug}`}>
+          <a >
+            <h3 className={styles.FeaturedTitle}>{feat.title}</h3>
+          </a>
+        </Link>
         <p className={styles.FeaturedAuthor}> <img src="https://img.icons8.com/ios/50/000000/user--v1.png"/>  {feat.author.node.name}</p>
-       
       </div>
     </div>
   )

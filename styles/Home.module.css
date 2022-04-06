@@ -16,3 +16,26 @@
   top: 2rem;
   align-self: flex-start;
 }
+
+.containerTags{
+  height: 200px;
+  border: 1px solid rgb(187, 184, 184);
+  border-radius: 10px;
+  margin: 66px 1rem 1rem;
+  padding: 2rem;
+}
+
+.containerTags h2{
+  margin-block: 1rem;
+}
+
+.tagIndv{
+  display: inline-block;
+  background-color: red;
+  color: white;
+  margin-right: 2rem;
+  margin-block: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 3px;
+  font-size: 2rem;
+}

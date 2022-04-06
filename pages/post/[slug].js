@@ -1,10 +1,49 @@
+import Layout from "../../comps/Layout"
+import { getAllMenus, getLogo } from '../../lib/api'
+import style from '../../styles/PostDetail.module.css'
+import Image from "next/image"
 
-const Details = (data) => {
+const Details = ({ post, menu, logo }) => {
+  console.log(post)
   return (
-    <div>
-      <h1>{data.post.title}</h1>
-      <p>{data.post.content}</p>
-    </div>
+    <Layout menu={menu} logo={logo}>
+      <div className={style.headerContent}>
+        <div className={style.imageWrapper}>
+          <div className={style.overlayBg}></div>
+          <Image
+            src={post.featuredImage.node.sourceUrl}
+            alt="featured image"
+            objectFit="cover"
+            layout="fill"
+          />
+          <div className={style.headerTitle}>
+            {
+              post.tags.nodes.map(tag => (
+                <span key={tag.id} className={style.postTags}>{tag.name}</span>
+              ))
+            }
+            <h1 className={style.postTitle}>{post.title}</h1>
+            <div className={style.flexContainer}>
+              <div className={style.iconWrapper}>
+                <Image
+                  src={post.author.node.avatar.url}
+                  alt="featured image"
+                  objectFit="cover"
+                  layout="fill"
+                />
+              </div>
+              <h3 >{post.author.node.name} /</h3>
+              <p>{post.date}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      <div className={style.PostContent}
+      dangerouslySetInnerHTML={{__html: post.content}}
+      />
+      
+    </Layout>
   )
 }
 
@@ -24,6 +63,21 @@ export async function getStaticProps(context) {
               sourceUrl
             }
           }
+          tags {
+            nodes {
+              name
+              id
+            }
+          }
+          date
+          author {
+            node {
+              avatar {
+                url
+              }
+              name
+            }
+          }
         }
       }
       `,
@@ -34,11 +88,18 @@ export async function getStaticProps(context) {
     }),
   })
 
+  const res2 = await getAllMenus()
+  const res3 = await getLogo()
+
   const json = await res.json()
+
+
   
   return {
     props: {
       post: json.data.post,
+      menu: res2.nodes[0].menuItems.edges,
+      logo: res3.nodes[0].sourceUrl,
     },
   }
 
@@ -52,7 +113,7 @@ export async function getStaticPaths() {
     body: JSON.stringify({
       query: `
         query allSlugs {
-          posts {
+          posts(last: 50) {
             nodes {
               id
               slug
@@ -70,7 +131,7 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: {slug: post.slug},
   }))
-  console.log(paths)
+  
   return {
     paths,
     fallback: false,
@@ -79,18 +140,3 @@ export async function getStaticPaths() {
 
 export default Details
 
-/*
-  query categoryPosts($categoryName: String!) {
-    posts(where: {categoryName: $categoryName}, last: 30) {
-      nodes {
-        title
-        excerpt
-        slug
-        id
-      }
-    },
-    variables: {
-      "categoryName": "health-fitness"
-    }
-  }
-*/

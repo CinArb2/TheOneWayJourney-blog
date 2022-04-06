@@ -21,8 +21,6 @@ const Navbar = ({menu, logo}) => {
       <nav className={style.Navbar}>
         {menu.map(menuItem => {
           const newPath = menuItem.node.path.slice(5)
-            console.log(newPath)
-            //{`/category/${menuItem.node.label}`} / {newPath}
             return (
               <Link key={menuItem.node.id} href={newPath}>
                 <a>{menuItem.node.label}</a>
