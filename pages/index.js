@@ -5,10 +5,16 @@ import PostCard from '../comps/PostCard'
 import FeaturedPosts from '../comps/FeaturedPosts'
 import Author from '../comps/Author'
 import Tags from '../comps/Tags'
+import Head from 'next/head'
 
 export default function Home({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) {
   
   return (
+    <>
+      <Head>
+        <title>The One Way Journey - Tips</title>
+        <link rel='icon' href={logo}/>
+      </Head>
     <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
@@ -24,7 +30,8 @@ export default function Home({ posts, menu, logo, featuredPosts, author, tags, c
           <Tags tags={tags}/>
         </aside>
       </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 

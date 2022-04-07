@@ -3,11 +3,16 @@ import styles from '../styles/About.module.css'
 import Layout from '../comps/Layout'
 import { getAllMenus, getLogo, getCategoryFooter, getAboutPage } from '../lib/api'
 import Image from 'next/image'
-
+import Head from 'next/head'
 
 export default function about({  menu, logo, categoryFooter, aboutContent }) {
   
   return (
+    <>
+      <Head>
+        <title>The One Way Journey - About</title>
+        <link rel='icon' href={logo}/>
+      </Head>
     <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div>
         <div className={styles.imageWrapper}>
@@ -26,7 +31,8 @@ export default function about({  menu, logo, categoryFooter, aboutContent }) {
             />
         </div>
       </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 

@@ -5,10 +5,16 @@ import FeaturedPosts from '../../comps/FeaturedPosts'
 import Author from '../../comps/Author'
 import Tags from '../../comps/Tags'
 import styles from '../../styles/Home.module.css'
+import Head from 'next/head'
 
-const Category = ({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) => {
+const Category = ({ posts, menu, logo, featuredPosts, author, tags, categoryFooter, pageTitle }) => {
   
   return (
+    <>
+      <Head>
+        <title>The One Way Journey - {pageTitle}</title>
+        <link rel='icon' href={logo}/>
+      </Head>
     <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
@@ -32,7 +38,8 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags, categoryFoot
           <Tags tags={tags}/>
         </aside>
       </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
@@ -89,7 +96,8 @@ export async function getStaticProps(context) {
       featuredPosts: res4.nodes,
       author: res5.nodes,
       tags: res6.nodes,
-      categoryFooter: res7.nodes[0].menuItems.nodes
+      categoryFooter: res7.nodes[0].menuItems.nodes,
+      pageTitle: context.params.tagName,
     },
   }
 }

@@ -2,13 +2,18 @@
 import styles from '../styles/Contact.module.css'
 import Layout from '../comps/Layout'
 import { getAllMenus, getLogo, getCategoryFooter } from '../lib/api'
-
+import Head from 'next/head'
 
 export default function contact({ menu, logo, categoryFooter }) {
   
   const handleSubmit = (e) => e.preventDefault()
   
   return (
+    <>
+      <Head>
+        <title>The One Way Journey - Contact</title>
+        <link rel='icon' href={logo}/>
+      </Head>
     <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={styles.container}>
         <h1>Contact us</h1>
@@ -36,7 +41,8 @@ export default function contact({ menu, logo, categoryFooter }) {
           <button>Submit</button>
         </form>
       </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
