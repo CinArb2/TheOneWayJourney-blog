@@ -40,3 +40,21 @@
   border-radius: 3px;
   font-size: 2rem;
 }
+
+@media screen and (max-width: 768px){
+  .containerFlex{
+    display: block;
+  }
+
+  .containerPost{
+    width: 90%;
+  }
+
+  .containerAside{
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+    align-self: none;
+  }
+}

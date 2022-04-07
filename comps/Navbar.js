@@ -2,37 +2,85 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from '../styles/Navbar.module.css'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
+import debounce from '../utilities/helpers'
 
 const Navbar = ({menu, logo}) => {
   const router = useRouter()
   const currentRoute = router.asPath.length > 1 ? router.asPath + '/' : router.asPath
+  const [hideHeader, setHideHeader] = useState(false);
+  const [open, setOpen] = useState(false)
+  
+  const handleScroll = debounce(() => {
+      if (window.scrollY > 100) {
+        setHideHeader(true)
+      } else {
+        setHideHeader(false)
+      }
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   
   return (
-    <header>
-      <Link href="/">
-        <a>
-          <div className={style.logoContainer}>
-            <Image
-              src={logo}
-              alt="icon-logo"
-              objectFit="cover"
-              layout="fill"
-              />
-          </div>
-        </a>
-      </Link>
-      <nav className={style.Navbar}>
-        {menu.map(menuItem => {
-          const newPath = menuItem.node.path.slice(5)
-          
+    <>
+      <header className={`${style.headerContainer} ${hideHeader ? style.active : ''}`}>
+        <Link href="/" >
+          <a className={hideHeader ? style.hide : ''}>
+            <div className={style.logoContainer}>
+              <Image
+                src={logo}
+                alt="icon-logo"
+                objectFit="cover"
+                layout="fill"
+                />
+            </div>
+          </a>
+        </Link>
+        <nav className={style.Navbar}>
+          <Link href="/" >
+            <a className={hideHeader ? '' : style.hide}>
+              <div className={style.logoNavbar}>
+                <Image
+                  src={logo}
+                  alt="icon-logo"
+                  objectFit="cover"
+                  layout="fill"
+                  />
+              </div>
+            </a>
+          </Link>
+          {menu.map(menuItem => {
+            const newPath = menuItem.node.path.slice(5)
             return (
-              <Link key={menuItem.node.id} href={newPath}>
-                <a className={currentRoute === newPath ? style.active : ''}>{menuItem.node.label}</a>
-              </Link>
-            )
-          })}
-      </nav>
-    </header>
+                <Link key={menuItem.node.id} href={newPath}>
+                  <a className={currentRoute === newPath ? style.active : style.Link}>{menuItem.node.label}</a>
+                </Link>
+              )
+            })}
+        </nav>
+        
+      </header>
+      <nav className={`${style.NavbarMobile} ${open ? style.active : ''}`}>
+          {menu.map(menuItem => {
+            const newPath = menuItem.node.path.slice(5)
+            return (
+                <Link key={menuItem.node.id} href={newPath}>
+                  <a className={currentRoute === newPath ? style.active : style.Link}>{menuItem.node.label}</a>
+                </Link>
+              )
+            })}
+        </nav>
+      <div className={style.menu} onClick={()=>setOpen(prev=> !prev)}>
+        <span className={open ? style.active : ''}></span>
+        <span className={open ? style.active : ''}></span>
+        <span className={open ? style.active : ''}></span>
+      </div>
+    </>  
   )
 }
 

@@ -34,3 +34,7 @@
   background-color: rgb(89, 94, 246);
   color: white;
 }
+
+.tagsList{
+  margin-block: 2rem;
+}

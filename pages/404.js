@@ -1,23 +1,32 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
-import {useRouter, userouter} from 'next/router'
+import styles from '../styles/NotFound.module.css'
+import Layout from '../comps/Layout'
+import { getAllMenus, getLogo, getCategoryFooter } from '../lib/api'
 
-const NotFound = () => {
-  const router = useRouter()
 
-  useEffect(() => {
-    setTimeout(() => {
-      router.push('/')
-    }, 3000)
-  }, [])
-
+export default function NotFound({  menu, logo, categoryFooter }) {
+  
   return (
-    <div>
-    <h1>Ooops...</h1>
-    <p>Go back</p>
-    <Link href="/"><a>Home</a></Link>
-    </div>
+    <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
+      <div className={styles.container}>
+        <h1>404</h1>
+        <p>It looks like nothing was found at this location. <Link href="/"><a>Return to Home Page</a></Link></p>
+      </div>
+    </Layout>
   )
 }
 
-export default NotFound
+export async function getStaticProps() {
+  
+  const res2 = await getAllMenus()
+  const res3 = await getLogo()
+  const res7 = await getCategoryFooter()
+
+  return {
+    props: {
+      menu: res2.nodes[0].menuItems.edges,
+      logo: res3.nodes[0].sourceUrl,
+      categoryFooter: res7.nodes[0].menuItems.nodes
+    },
+  }
+}

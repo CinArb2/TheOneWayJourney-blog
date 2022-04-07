@@ -27,36 +27,28 @@
 .FeaturedTitle{
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
   position: relative;
   text-decoration: none;
   transition: text-decoration 200ms ease;
 }
 
+.FeaturedTitle{
+  text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+  transition: text-decoration-color 500ms ease-in-out, text-underline-offset 500ms ease-in-out;
+  text-decoration-color: rgb(165, 150, 150);
+}
+
 .FeaturedTitle:hover{
+  text-underline-offset: 0.3em;
+  text-decoration-color: red;
+}
+
+.FeaturedTitle h3:hover{
   color: red;
   position: relative;
-  
 }
 
-.FeaturedTitle::before{
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 0;
-  background-color: red;
-  bottom: -20%;
-  transition: width 200ms ease;
-}
-
-.FeaturedTitle:hover::before{
-  content: "";
-  position: absolute;
-  height: 5px;
-  width: 95%;
-  background-color: red;
-  bottom: -20%;
-}
 
 .FeaturedAuthor{
   font-size: 0.9rem;
