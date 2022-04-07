@@ -1,12 +1,14 @@
 import Layout from "../../comps/Layout"
-import { getAllMenus, getLogo } from '../../lib/api'
+import { getAllMenus, getLogo, getCategoryFooter } from '../../lib/api'
 import style from '../../styles/PostDetail.module.css'
 import Image from "next/image"
+import SocialShare from "../../comps/SocialShare"
 
-const Details = ({ post, menu, logo }) => {
+
+const Details = ({ post, menu, logo, categoryFooter }) => {
   
   return (
-    <Layout menu={menu} logo={logo}>
+    <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={style.headerContent}>
         <div className={style.imageWrapper}>
           <div className={style.overlayBg}></div>
@@ -42,7 +44,7 @@ const Details = ({ post, menu, logo }) => {
       <div className={style.PostContent}
       dangerouslySetInnerHTML={{__html: post.content}}
       />
-      
+      <SocialShare post={post}/>
     </Layout>
   )
 }
@@ -90,9 +92,8 @@ export async function getStaticProps(context) {
 
   const res2 = await getAllMenus()
   const res3 = await getLogo()
-
   const json = await res.json()
-
+  const res7 = await getCategoryFooter()
 
   
   return {
@@ -100,6 +101,7 @@ export async function getStaticProps(context) {
       post: json.data.post,
       menu: res2.nodes[0].menuItems.edges,
       logo: res3.nodes[0].sourceUrl,
+      categoryFooter: res7.nodes[0].menuItems.nodes
     },
   }
 

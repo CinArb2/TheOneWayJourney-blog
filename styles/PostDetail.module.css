@@ -9,8 +9,8 @@
 }
 
 .PostContent{
-  padding: 1rem;
-  max-width: 1300px;
+  padding: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
   line-height: 1.5;
 }
@@ -76,13 +76,17 @@
   left: 50%;
   transform: translateX(-50%);
   background: rgba( 255, 255, 255, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  box-shadow: 0 8px 32px 0 rgb(49 49 56 / 37%);
   backdrop-filter: blur( 2.5px );
   -webkit-backdrop-filter: blur( 2.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   padding: 2rem;
   text-align: center;
+}
+.headerTitle h1, 
+.headerTitle h3{
+  color: white;
 }
 
 .flexContainer{
@@ -106,4 +110,3 @@
   text-decoration: underline;
   text-underline-offset: 0.5rem;
 }
-

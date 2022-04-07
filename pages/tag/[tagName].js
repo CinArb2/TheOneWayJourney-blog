@@ -1,4 +1,4 @@
-import { getAllMenus, getLogo, getFeaturedPosts, getAuthor, getTags } from '../../lib/api'
+import { getAllMenus, getLogo, getFeaturedPosts, getAuthor, getTags, getCategoryFooter } from '../../lib/api'
 import Layout from '../../comps/Layout'
 import PostCard from '../../comps/PostCard'
 import FeaturedPosts from '../../comps/FeaturedPosts'
@@ -6,10 +6,10 @@ import Author from '../../comps/Author'
 import Tags from '../../comps/Tags'
 import styles from '../../styles/Home.module.css'
 
-const Category = ({ posts, menu, logo, featuredPosts, author, tags }) => {
+const Category = ({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) => {
   
   return (
-    <Layout menu={menu} logo={logo}>
+    <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
           <div className={styles.containerTags}>
@@ -78,6 +78,8 @@ export async function getStaticProps(context) {
   const res4 = await getFeaturedPosts()
   const res5 = await getAuthor()
   const res6 = await getTags()
+  const res7 = await getCategoryFooter()
+  
 
   return {
     props: {
@@ -87,6 +89,7 @@ export async function getStaticProps(context) {
       featuredPosts: res4.nodes,
       author: res5.nodes,
       tags: res6.nodes,
+      categoryFooter: res7.nodes[0].menuItems.nodes
     },
   }
 }

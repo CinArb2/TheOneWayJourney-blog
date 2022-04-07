@@ -1,15 +1,15 @@
 import styles from '../styles/Home.module.css'
 import Layout from '../comps/Layout'
-import { getAllMenus, getAllPostsForHome, getLogo, getFeaturedPosts, getAuthor, getTags } from '../lib/api'
+import { getAllMenus, getAllPostsForHome, getLogo, getFeaturedPosts, getAuthor, getTags, getCategoryFooter } from '../lib/api'
 import PostCard from '../comps/PostCard'
 import FeaturedPosts from '../comps/FeaturedPosts'
 import Author from '../comps/Author'
 import Tags from '../comps/Tags'
 
-export default function Home({ posts, menu, logo, featuredPosts, author, tags }) {
+export default function Home({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) {
   
   return (
-    <Layout menu={menu} logo={logo}>
+    <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
           {
@@ -36,6 +36,7 @@ export async function getStaticProps() {
   const res4 = await getFeaturedPosts()
   const res5 = await getAuthor()
   const res6 = await getTags()
+  const res7 = await getCategoryFooter()
 
   return {
     props: {
@@ -45,6 +46,7 @@ export async function getStaticProps() {
       featuredPosts: res4.nodes,
       author: res5.nodes,
       tags: res6.nodes,
+      categoryFooter: res7.nodes[0].menuItems.nodes
     },
     
   }

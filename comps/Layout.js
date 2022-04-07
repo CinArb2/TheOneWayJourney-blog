@@ -2,14 +2,14 @@ import Footer from "./Footer"
 import Navbar from "./Navbar"
 
 
-const Layout = ({ children, menu, logo}) => {
+const Layout = ({ children, menu, logo, categoryFooter}) => {
  
   
   return (
     <div>
       <Navbar menu={menu} logo={ logo}/>
       {children}
-      <Footer menu={menu} logo={ logo}/>
+      <Footer categoryFooter={categoryFooter} logo={ logo} />
     </div>
   )
 }

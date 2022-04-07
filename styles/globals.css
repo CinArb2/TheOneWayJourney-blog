@@ -36,10 +36,10 @@ html:focus-within {
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  color: #444343;
+  color: #626a7f;
 }
 
 /* A elements that don't have a class get default styles */
@@ -69,4 +69,5 @@ select {
 h1, h2, h3{
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
+  color: black;
 }

@@ -2,7 +2,7 @@
   padding: 2rem;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -12,11 +12,12 @@
   position: relative;
   width: 150px;
   height: 80px;
-  margin: 2rem auto 0;
+  margin: 1rem auto 2rem;
 }
 
 .footer h3{
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .footer h3::before{
@@ -33,4 +34,15 @@
   font-size: 0.8rem;
   margin-block: 2rem;
   letter-spacing: 2px;
+}
+
+.listLinks {
+  display: block;
+  margin-block: 1rem;
+  color: #626a7f;
+  font-size: 16px;
+}
+
+.listLinks:hover{
+  color: red;
 }
