@@ -80,23 +80,23 @@ export async function getStaticProps(context) {
 
   const json = await res.json()
   
-  const res2 = await getAllMenus()
-  const res3 = await getLogo()
-  const res4 = await getFeaturedPosts()
-  const res5 = await getAuthor()
-  const res6 = await getTags()
-  const res7 = await getCategoryFooter()
+  const menus = await getAllMenus()
+  const logo = await getLogo()
+  const posts = await getFeaturedPosts()
+  const author = await getAuthor()
+  const tags = await getTags()
+  const category = await getCategoryFooter()
   
 
   return {
     props: {
       posts: json.data.posts.nodes,
-      menu: res2.nodes[0].menuItems.edges,
-      logo: res3.nodes[0].sourceUrl,
-      featuredPosts: res4.nodes,
-      author: res5.nodes,
-      tags: res6.nodes,
-      categoryFooter: res7.nodes[0].menuItems.nodes,
+      menu: menus.nodes[0].menuItems.edges,
+      logo: logo.nodes[0].sourceUrl,
+      featuredPosts: posts.nodes,
+      author: author.nodes,
+      tags: tags.nodes,
+      categoryFooter: category.nodes[0].menuItems.nodes,
       pageTitle: context.params.tagName,
     },
   }

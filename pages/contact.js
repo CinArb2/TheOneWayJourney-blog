@@ -48,15 +48,15 @@ export default function contact({ menu, logo, categoryFooter }) {
 
 export async function getStaticProps() {
   
-  const res2 = await getAllMenus()
-  const res3 = await getLogo()
-  const res7 = await getCategoryFooter()
+  const menus = await getAllMenus()
+  const logo = await getLogo()
+  const category = await getCategoryFooter()
 
   return {
     props: {
-      menu: res2.nodes[0].menuItems.edges,
-      logo: res3.nodes[0].sourceUrl,
-      categoryFooter: res7.nodes[0].menuItems.nodes
+      menu: menus.nodes[0].menuItems.edges,
+      logo: logo.nodes[0].sourceUrl,
+      categoryFooter: category.nodes[0].menuItems.nodes
     },
   }
 }

@@ -96,18 +96,18 @@ export async function getStaticProps(context) {
     }),
   })
 
-  const res2 = await getAllMenus()
-  const res3 = await getLogo()
+  const menus = await getAllMenus()
+  const logo = await getLogo()
   const json = await res.json()
-  const res7 = await getCategoryFooter()
+  const category = await getCategoryFooter()
 
   
   return {
     props: {
       post: json.data.post,
-      menu: res2.nodes[0].menuItems.edges,
-      logo: res3.nodes[0].sourceUrl,
-      categoryFooter: res7.nodes[0].menuItems.nodes,
+      menu: menus.nodes[0].menuItems.edges,
+      logo: logo.nodes[0].sourceUrl,
+      categoryFooter: category.nodes[0].menuItems.nodes,
       pageTitle: context.params.slug
     },
   }
