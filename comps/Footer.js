@@ -40,9 +40,9 @@ const Footer = ({ categoryFooter, logo }) => {
         <h3>Category</h3>
         {
           categoryFooter.map(category => {
-            const newPath = category.path.slice(5)
+            
               return (
-                <Link href={newPath} key={category.id} >
+                <Link href={category.path} key={category.id} >
                   <a className={style.listLinks}>{category.label}</a>
                 </Link>
               )
