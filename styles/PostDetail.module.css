@@ -89,6 +89,10 @@
   color: white;
 }
 
+.headerTitle h1{
+  font-size: clamp(1.6rem, 5vw, 2rem);
+}
+
 .flexContainer{
   display: flex;
   justify-content: center;
@@ -109,4 +113,13 @@
   letter-spacing: 1.5px;
   text-decoration: underline;
   text-underline-offset: 0.5rem;
+}
+
+@media screen and (max-width: 450px){
+  .iconWrapper{
+    margin: 1rem auto;
+  }
+  .flexContainer{
+    display: block;
+  }
 }

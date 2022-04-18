@@ -3,7 +3,6 @@ import Image from 'next/image'
 import style from '../styles/Navbar.module.css'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import debounce from '../utilities/helpers'
 
 const Navbar = ({menu, logo}) => {
   const router = useRouter()
@@ -11,13 +10,13 @@ const Navbar = ({menu, logo}) => {
   const [hideHeader, setHideHeader] = useState(false);
   const [open, setOpen] = useState(false)
   
-  const handleScroll = debounce(() => {
+  const handleScroll = () => {
       if (window.scrollY > 100) {
         setHideHeader(true)
       } else {
         setHideHeader(false)
       }
-  }, 100);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
