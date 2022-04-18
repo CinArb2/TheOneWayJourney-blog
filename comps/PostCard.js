@@ -5,7 +5,6 @@ import style from '../styles/PostCard.module.css'
 
 
 const PostCard = ({ post }) => {
-  
   return (
     <div className={style.cardWrapper}>
       

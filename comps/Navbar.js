@@ -54,10 +54,9 @@ const Navbar = ({menu, logo}) => {
             </a>
           </Link>
           {menu.map(menuItem => {
-            const newPath = menuItem.node.path.slice(5)
             return (
-                <Link key={menuItem.node.id} href={newPath}>
-                  <a className={currentRoute === newPath ? style.active : style.Link}>{menuItem.node.label}</a>
+                <Link key={menuItem.node.id} href={menuItem.node.path}>
+                  <a className={currentRoute === menuItem.node.path ? style.active : style.Link}>{menuItem.node.label}</a>
                 </Link>
               )
             })}
