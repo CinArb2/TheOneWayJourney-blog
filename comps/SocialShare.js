@@ -12,28 +12,29 @@ import {
   LinkedinIcon,
 } from 'next-share';
 
-const SocialShare = ({post}) => {
+const SocialShare = ({ post }) => {
+  console.log(post.slug)
   return (
     <div className={style.socialContainer}>
         <h3>Share Article</h3>
         <FacebookShareButton
-          url={`http://theonewayjourney.com/${post.slug}/`} >
+          url={`https://www.theonewayjourney.com/post/${post.slug}/`} >
           <FacebookIcon size={50} round />
         </FacebookShareButton>
         <PinterestShareButton
-          url={`http://theonewayjourney.com/${post.slug}/`} >
+          url={`https://www.theonewayjourney.com/post/${post.slug}/`} >
           <PinterestIcon size={50} round />
         </PinterestShareButton>
         <RedditShareButton
-          url={`http://theonewayjourney.com/${post.slug}/`} >
+          url={`https://www.theonewayjourney.com/post/${post.slug}/`} >
           <RedditIcon size={50} round />
         </RedditShareButton>
         <WhatsappShareButton
-          url={`http://theonewayjourney.com/${post.slug}/`} >
+          url={`https://www.theonewayjourney.com/post/${post.slug}/`} >
           <WhatsappIcon size={50} round />
         </WhatsappShareButton>
         <LinkedinShareButton
-          url={`http://theonewayjourney.com/${post.slug}/`} >
+          url={`https://www.theonewayjourney.com/post/${post.slug}/`} >
           <LinkedinIcon size={50} round />
         </LinkedinShareButton>
       </div>
