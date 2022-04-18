@@ -45,7 +45,7 @@ const Category = ({ posts, menu, logo, featuredPosts, author, tags, categoryFoot
 
 export async function getStaticProps(context) {
   
-  const res = await fetch('http://localhost/oneW/graphql', {
+  const res = await fetch('http://my-wordpress.theonewayjourney.com/graphql', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
@@ -103,7 +103,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const response = await fetch('http://localhost/oneW/graphql', {
+  const response = await fetch('http://my-wordpress.theonewayjourney.com/graphql', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
