@@ -13,7 +13,6 @@ import {
 } from 'next-share';
 
 const SocialShare = ({ post }) => {
-  console.log(post.slug)
   return (
     <div className={style.socialContainer}>
         <h3>Share Article</h3>

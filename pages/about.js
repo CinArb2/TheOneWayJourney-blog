@@ -50,5 +50,6 @@ export async function getStaticProps() {
       categoryFooter: footer.nodes[0].menuItems.nodes,
       aboutContent: aboutPage.nodes[0]
     },
+    revalidate: 10,
   }
 }
