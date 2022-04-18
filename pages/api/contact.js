@@ -1,8 +1,5 @@
 export default function (req, res) {
 
-  console.log(process.env.PASSWORD)
-  console.log(req.body)
-
   let nodemailer = require('nodemailer')
   const transporter = nodemailer.createTransport({
     port: 465,

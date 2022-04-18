@@ -32,9 +32,7 @@ const Form = () => {
         body: JSON.stringify(formData)
       })
       .then((res) => {
-        console.log('Response received')
         if (res.status === 200) {
-          console.log('Response succeeded!')
             setSubmitted(true)
             setFormData({
               name: '',
