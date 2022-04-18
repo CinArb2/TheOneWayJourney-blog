@@ -1,0 +1,60 @@
+.modalBackdrop{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #ffffffe0;
+  z-index: 1001;
+}
+
+.modalContainer{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  background-color: white;
+  padding: 2rem;
+  z-index: 1002;
+  transform: translateX(-50%);
+  text-align: center;
+  border: 1px solid #d1cece;
+  border-radius: 10px;
+}
+
+.modalContainer h1{
+  margin-top: 4rem;
+  padding-bottom: 1rem;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.imageModal{
+  margin: 1rem auto;
+}
+
+.closeBtn{
+  position: absolute;
+  top: -15px;
+  right: 23px;
+  display: block;
+  border: none;
+  background-color: rgb(89, 94, 246);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50px;
+  margin: 2rem auto;
+  cursor: pointer;
+  transition: background-color 400ms ease-in-out, box-shadow 400ms ease-in-out,
+  color 400ms ease-in-out;
+  border: 1px solid rgb(89, 94, 246);
+}
+
+.closeBtn img{
+  height: 25px;
+}
+
+.closeBtn:hover{
+  color: white;
+  background-color: rgb(57, 56, 56);
+  border: 1px solid rgb(57, 56, 56);
+  box-shadow: none;
+}

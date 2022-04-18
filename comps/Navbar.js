@@ -11,7 +11,8 @@ const Navbar = ({menu, logo}) => {
   const [open, setOpen] = useState(false)
   
   const handleScroll = () => {
-      if (window.scrollY > 100) {
+    
+      if (window.pageYOffset > 100) {
         setHideHeader(true)
       } else {
         setHideHeader(false)
