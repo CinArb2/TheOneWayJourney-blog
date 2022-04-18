@@ -56,7 +56,7 @@ export async function getStaticProps() {
       tags: tags.nodes,
       categoryFooter: category.nodes[0].menuItems.nodes
     },
-    
+    revalidate: 10,
   }
 }
 

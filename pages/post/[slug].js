@@ -110,6 +110,7 @@ export async function getStaticProps(context) {
       categoryFooter: category.nodes[0].menuItems.nodes,
       pageTitle: context.params.slug
     },
+    revalidate: 10,
   }
 
 }
@@ -143,7 +144,7 @@ export async function getStaticPaths() {
   
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 

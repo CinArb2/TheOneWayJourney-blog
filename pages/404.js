@@ -28,5 +28,6 @@ export async function getStaticProps() {
       logo: logo.nodes[0].sourceUrl,
       categoryFooter: footer.nodes[0].menuItems.nodes
     },
+    revalidate: 10,
   }
 }
