@@ -7,6 +7,7 @@ import Author from '../comps/Author'
 import Tags from '../comps/Tags'
 import Head from 'next/head'
 
+
 export default function Home({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) {
   
   return (
