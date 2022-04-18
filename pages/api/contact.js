@@ -1,6 +1,7 @@
-export default function (req, res) {
+export default async function (req, res) {
 
   let nodemailer = require('nodemailer')
+
   const transporter = nodemailer.createTransport({
     port: 465,
     host: "smtp.gmail.com",
@@ -11,6 +12,20 @@ export default function (req, res) {
     },
     secure: true,
   });
+
+  await new Promise((resolve, reject) => {
+    // verify connection configuration
+      transporter.verify(function (error, success) {
+          if (error) {
+              console.log(error);
+              reject(error);
+          } else {
+              console.log("Server is ready to take our messages");
+              resolve(success);
+          }
+      });
+  });
+
   const mailData = {
     from: 'owjemail@gmail.com',
     to: 'theonewayjourneyblog92@gmail.com',
@@ -19,12 +34,18 @@ export default function (req, res) {
     html: `<div>${req.body.message}</div><p>Sent from:
     ${req.body.email}</p>`
   }
-  transporter.sendMail(mailData, function (err, info) {
-    if(err)
-      console.log(err, 'error')
-    else
-      console.log(info)
-  })
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailData, function (err, info) {
+      if(err){
+        console.log(err, 'error')
+        reject(err)
+      }else {
+        console.log(info)
+        resolve(info);
+      }
+    })
+  });
+  
   res.status(200)
   res.end()
 }
