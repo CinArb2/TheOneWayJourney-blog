@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['my-wordpress.theonewayjourney.com', '0.gravatar.com', 'localhost']
+    domains: ['wp-one-way.herokuapp.com', '0.gravatar.com', 'localhost']
   }
 }
 
