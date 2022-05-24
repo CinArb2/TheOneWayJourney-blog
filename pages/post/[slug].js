@@ -56,7 +56,8 @@ const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch('https://wp-one-way.herokuapp.com/wp/graphql', {
+  const API_URL = process.env.WORDPRESS_API_URL;
+  const res = await fetch(API_URL, {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
@@ -116,8 +117,8 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  
-  const response = await fetch('https://wp-one-way.herokuapp.com/wp/graphql', {
+  const API_URL = process.env.WORDPRESS_API_URL;
+  const response = await fetch(API_URL, {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify({
