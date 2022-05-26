@@ -9,7 +9,7 @@ import Head from 'next/head'
 
 
 export default function Home({ posts, menu, logo, featuredPosts, author, tags, categoryFooter }) {
-  
+  console.log(logo)
   return (
     <>
       <Head>
@@ -39,22 +39,23 @@ export default function Home({ posts, menu, logo, featuredPosts, author, tags, c
 export async function getStaticProps() {
   
   const res = await getAllPostsForHome()
-  const menus = await getAllMenus()
+  // const menus = await getAllMenus()
   const logo = await getLogo()
   const featured = await getFeaturedPosts()
   const author = await getAuthor()
   const tags = await getTags()
-  const category = await getCategoryFooter()
+  console.log(tags)
+  // const category = await getCategoryFooter()
 
   return {
     props: {
-      posts: res.nodes,
-      menu: menus.nodes[0].menuItems.edges,
-      logo: logo.nodes[0].sourceUrl,
-      featuredPosts: featured.nodes,
-      author: author.nodes,
-      tags: tags.nodes,
-      categoryFooter: category.nodes[0].menuItems.nodes
+      posts: res,
+      // menu: menus.nodes[0].menuItems.edges,
+      logo: logo?.[0].logoImage.url,
+      featuredPosts: featured,
+      author: author,
+      tags: tags,
+      // categoryFooter: category.nodes[0].menuItems.nodes
     },
     revalidate: 10,
   }

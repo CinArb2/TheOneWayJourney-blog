@@ -54,25 +54,25 @@ const Navbar = ({menu, logo}) => {
               </div>
             </a>
           </Link>
-          {menu.map(menuItem => {
+          {/* {menu.map(menuItem => {
             return (
                 <Link key={menuItem.node.id} href={menuItem.node.path}>
                   <a className={currentRoute === menuItem.node.path ? style.active : style.Link}>{menuItem.node.label}</a>
                 </Link>
               )
-            })}
+            })} */}
         </nav>
         
       </header>
       <nav className={`${style.NavbarMobile} ${open ? style.active : ''}`}>
-          {menu.map(menuItem => {
+          {/* {menu.map(menuItem => {
             
             return (
                 <Link key={menuItem.node.id} href={menuItem.node.path}>
                   <a className={currentRoute === menuItem.node.path ? style.active : style.Link}>{menuItem.node.label}</a>
                 </Link>
               )
-            })}
+            })} */}
         </nav>
       <div className={style.menu} onClick={()=>setOpen(prev=> !prev)}>
         <span className={open ? style.active : ''}></span>

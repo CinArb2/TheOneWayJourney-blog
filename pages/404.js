@@ -24,9 +24,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      menu: menus.nodes[0].menuItems.edges,
-      logo: logo.nodes[0].sourceUrl,
-      categoryFooter: footer.nodes[0].menuItems.nodes
+      menu: menus?.nodes[0].menuItems.edges,
+      logo: logo?.nodes[0].sourceUrl,
+      categoryFooter: footer?.nodes[0].menuItems.nodes
     },
     revalidate: 10,
   }

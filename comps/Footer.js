@@ -38,7 +38,7 @@ const Footer = ({ categoryFooter, logo }) => {
       </div>
        <div className={style.category}>
         <h3>Category</h3>
-        {
+        {/* {
           categoryFooter.map(category => {
             
               return (
@@ -47,7 +47,7 @@ const Footer = ({ categoryFooter, logo }) => {
                 </Link>
               )
           })
-        }
+        } */}
       </div>
     </footer>
   )

@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['wp-one-way.herokuapp.com', '0.gravatar.com', 'localhost']
+    domains: [
+      // 'https://onewayjourney.000webhostapp.com',
+      'media.graphassets.com',
+      '0.gravatar.com',
+      'secure.gravatar.com',
+      'localhost']
   }
 }
 

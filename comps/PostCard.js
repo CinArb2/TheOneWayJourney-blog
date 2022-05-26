@@ -5,19 +5,20 @@ import style from '../styles/PostCard.module.css'
 
 
 const PostCard = ({ post }) => {
+  
   return (
     <div className={style.cardWrapper}>
       
       <div className={style.imageWrapper}>
         <Image
-          src={post.featuredImage.node.sourceUrl}
+          src={post.featuredImage.url}
           alt="icon-logo"
           objectFit="cover"
           layout="fill"
         />
         <div className={style.textImgWrapper}>
-          {post.tags.nodes.map(tag => (
-            <span key={tag.tagId} className={style.tag}>{tag.name}</span>
+          {post.tags.map(tag => (
+            <span key={tag.id} className={style.tag}>{tag.name}</span>
           ))}
             <h2 className={style.title}> <span>{post.title}</span> </h2>
         </div>

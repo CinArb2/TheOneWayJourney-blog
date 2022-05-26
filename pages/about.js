@@ -18,7 +18,7 @@ export default function about({  menu, logo, categoryFooter, aboutContent }) {
         <div className={styles.imageWrapper}>
           <div className={styles.overlayBg}></div>
           <Image
-            src={aboutContent.featuredImage.node.sourceUrl}
+            src={aboutContent.featuredImage?.node.sourceUrl}
             alt="featured image"
             objectFit="cover"
             layout="fill"

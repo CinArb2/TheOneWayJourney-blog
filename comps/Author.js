@@ -24,7 +24,7 @@ const Author = ({ author }) => {
       </div>
       <h3 className={styles.authorTitle}>{mainAuthor.name}</h3>
       <div className={styles.authorContent}
-        dangerouslySetInnerHTML={{__html: mainAuthor.description.split('end')[0]}}
+        dangerouslySetInnerHTML={{__html: mainAuthor.description}}
       />
     </div>
   )
