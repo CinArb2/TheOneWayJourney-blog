@@ -1,11 +1,18 @@
+
 import Layout from "../../comps/Layout"
-import { getAllMenus, getLogo, getCategoryFooter } from '../../lib/api'
+import { getLogo, getPost, getAllSlugs, getFeaturedPosts, getCategories, getAuthor, getTags } from '../../lib/api'
 import style from '../../styles/PostDetail.module.css'
 import Image from "next/image"
 import SocialShare from "../../comps/SocialShare"
 import Head from 'next/head'
 
-const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
+const Details = ({ post,
+      categories,
+      logo,
+      featuredPosts,
+      author,
+      tags,
+      pageTitle }) => {
   
   return (
     <>
@@ -13,19 +20,19 @@ const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
         <title>The One Way Journey - {pageTitle}</title>
         <link rel='icon' href={logo}/>
       </Head>
-    <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
+    <Layout menu={categories} logo={logo}>
       <div className={style.headerContent}>
         <div className={style.imageWrapper}>
           <div className={style.overlayBg}></div>
           <Image
-            src={post.featuredImage.node.sourceUrl}
+            src={post.featuredImage?.url}
             alt="featured image"
             objectFit="cover"
             layout="fill"
           />
           <div className={style.headerTitle}>
             {
-              post.tags.nodes.map(tag => (
+              post.tags?.map(tag => (
                 <span key={tag.id} className={style.postTags}>{tag.name}</span>
               ))
             }
@@ -33,13 +40,13 @@ const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
             <div className={style.flexContainer}>
               <div className={style.iconWrapper}>
                 <Image
-                  src={post.author.node.avatar.url}
+                  src={post.author?.avatar.url}
                   alt="featured image"
                   objectFit="cover"
                   layout="fill"
                 />
               </div>
-              <h3 >{post.author.node.name} /</h3>
+              <h3 >{post.author.name} /</h3>
               <p>{post.date}</p>
             </div>
           </div>
@@ -47,7 +54,7 @@ const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
       </div>
         
       <div className={style.PostContent}
-      dangerouslySetInnerHTML={{__html: post.content}}
+      dangerouslySetInnerHTML={{__html: post.content.html}}
       />
       <SocialShare post={post}/>
       </Layout>
@@ -56,59 +63,26 @@ const Details = ({ post, menu, logo, categoryFooter, pageTitle }) => {
 }
 
 export async function getStaticProps(context) {
-  const API_URL = process.env.WORDPRESS_API_URL;
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify({
-      query: `
-      query allSlugs($id: ID = "id", $idType: PostIdType = ID) {
-        post(id: $id, idType: $idType) {
-          title
-          slug
-          content
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          tags {
-            nodes {
-              name
-              id
-            }
-          }
-          date
-          author {
-            node {
-              avatar {
-                url
-              }
-              name
-            }
-          }
-        }
-      }
-      `,
-      variables: {
-        id: context.params.slug,
-        idType: 'SLUG'
-      }
-    }),
-  })
 
-  const menus = await getAllMenus()
+  const variable = {
+    slug: context.params.slug,
+  }
+  const post = await getPost(variable)
   const logo = await getLogo()
-  const json = await res.json()
-  const category = await getCategoryFooter()
+  const featured = await getFeaturedPosts()
+  const author = await getAuthor()
+  const tags = await getTags()
+  const categories = await getCategories()
 
   
   return {
     props: {
-      post: json.data.post,
-      menu: menus.nodes[0].menuItems.edges,
-      logo: logo.nodes[0].sourceUrl,
-      categoryFooter: category.nodes[0].menuItems.nodes,
+      post,
+      categories,
+      logo: logo?.[0].logoImage.url,
+      featuredPosts: featured,
+      author,
+      tags,
       pageTitle: context.params.slug
     },
     revalidate: 10,
@@ -117,30 +91,11 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const API_URL = process.env.WORDPRESS_API_URL;
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify({
-      query: `
-        query allSlugs {
-          posts(last: 50) {
-            nodes {
-              id
-              slug
-            }
-          }
-        }
-      `,
-    }),
-  })
 
-  const json = await response.json()
+  const slugs = await getAllSlugs()
 
-  const posts = json.data.posts.nodes;
-
-  const paths = posts.map((post) => ({
-    params: {slug: post.slug},
+  const paths = slugs.map((el) => ({
+    params: { slug: el.slug},
   }))
   
   return {

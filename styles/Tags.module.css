@@ -1,5 +1,5 @@
 .tagContainer{
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 4rem;
 }
 
 .tagsTitle{
@@ -21,17 +21,17 @@
 .tags{
   display: inline-block;
   margin: 0.2rem;
-  background-color: #d3d3ed;
+  border:1px solid #d3d3ed;
   color: #2b2b2c;
-  padding: 1rem;
+  padding: 0.7rem 1rem;
   font-size: 0.9rem;
-  border-radius: 10px;
+  border-radius: 50px;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
 .tags:hover{
-  background-color: rgb(89, 94, 246);
+  background-color: #d3d3ed;
   color: white;
 }
 

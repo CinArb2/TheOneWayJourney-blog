@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const FeaturedIndiv = ({ feat }) => {
-  console.log(feat)
+  
   return (
     <div className={styles.wrapperFeatured}>
       <div className={styles.imageWrapper}>

@@ -1,9 +1,9 @@
 import Layout from '../comps/Layout'
-import { getAllMenus, getLogo, getCategoryFooter } from '../lib/api'
+import { getAllMenus, getLogo, getCategoryFooter, getCategories } from '../lib/api'
 import Head from 'next/head'
 import Form from '../comps/Form'
 
-export default function contact({ menu, logo, categoryFooter }) {
+export default function contact({ categories, logo }) {
 
   
   return (
@@ -12,7 +12,7 @@ export default function contact({ menu, logo, categoryFooter }) {
         <title>The One Way Journey - Contact</title>
         <link rel='icon' href={logo}/>
       </Head>
-      <Layout menu={menu} logo={logo} categoryFooter={categoryFooter}>
+      <Layout menu={categories} logo={logo}>
         <Form/>
       </Layout>
     </>
@@ -21,15 +21,13 @@ export default function contact({ menu, logo, categoryFooter }) {
 
 export async function getStaticProps() {
   
-  const menus = await getAllMenus()
   const logo = await getLogo()
-  const category = await getCategoryFooter()
+  const categories = await getCategories()
 
   return {
     props: {
-      menu: menus.nodes[0].menuItems.edges,
-      logo: logo.nodes[0].sourceUrl,
-      categoryFooter: category.nodes[0].menuItems.nodes
+      categories,
+      logo: logo?.[0].logoImage.url,
     },
     revalidate: 10,
   }

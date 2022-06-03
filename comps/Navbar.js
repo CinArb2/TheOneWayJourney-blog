@@ -11,12 +11,11 @@ const Navbar = ({menu, logo}) => {
   const [open, setOpen] = useState(false)
   
   const handleScroll = () => {
-    
-      if (window.pageYOffset > 100) {
-        setHideHeader(true)
-      } else {
-        setHideHeader(false)
-      }
+    if (window.pageYOffset > 100 && window.innerWidth > 1149) {
+      setHideHeader(true)
+    } else {
+      setHideHeader(false)
+    }
   };
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const Navbar = ({menu, logo}) => {
     <>
       <header className={`${style.headerContainer} ${hideHeader ? style.active : ''}`}>
         <Link href="/" >
-          <a className={hideHeader ? style.hide : ''}>
+          <a>
             <div className={style.logoContainer}>
               <Image
                 src={logo}
@@ -54,25 +53,39 @@ const Navbar = ({menu, logo}) => {
               </div>
             </a>
           </Link>
-          {/* {menu.map(menuItem => {
+          <Link href="/" >
+            <a className={currentRoute === '/' ? style.active : style.Link}>
+              Home
+            </a>
+          </Link>
+          {menu.map(menuItem => {
             return (
-                <Link key={menuItem.node.id} href={menuItem.node.path}>
-                  <a className={currentRoute === menuItem.node.path ? style.active : style.Link}>{menuItem.node.label}</a>
+                <Link key={menuItem.id} href={`/category/${menuItem.slug}`}>
+                  <a className={currentRoute === `/category/${menuItem.slug}/` ? style.active : style.Link}>{menuItem.name}</a>
                 </Link>
               )
-            })} */}
+          })}
+          <Link href="/about" >
+            <a className={currentRoute === '/about/' ? style.active : style.Link}>
+              About us
+            </a>
+          </Link>
+           <Link href="/contact" >
+            <a className={currentRoute === '/contact/' ? style.active : style.Link}>
+              Contact us
+            </a>
+          </Link>
         </nav>
         
       </header>
       <nav className={`${style.NavbarMobile} ${open ? style.active : ''}`}>
-          {/* {menu.map(menuItem => {
-            
+          {menu.map(menuItem => {
             return (
-                <Link key={menuItem.node.id} href={menuItem.node.path}>
-                  <a className={currentRoute === menuItem.node.path ? style.active : style.Link}>{menuItem.node.label}</a>
+                <Link key={menuItem.id} href={`/category/${menuItem.slug}`}>
+                  <a className={currentRoute === menuItem.name ? style.active : style.Link}>{menuItem.name}</a>
                 </Link>
               )
-            })} */}
+          })}
         </nav>
       <div className={style.menu} onClick={()=>setOpen(prev=> !prev)}>
         <span className={open ? style.active : ''}></span>

@@ -21,7 +21,7 @@ const Footer = ({ categoryFooter, logo }) => {
         </Link>
       </div>
       <div className={style.footerDescription}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, tempore quidem optio temporibus modi architecto nostrum quasi aspernatur!</p>
+        <p>“The journey of a thousand miles begins with a single step.”</p>
         <p className={style.copyright}>© 2021, All Rights Reserved.</p>
       </div>
       <div className={style.quickLinks}>
@@ -38,16 +38,16 @@ const Footer = ({ categoryFooter, logo }) => {
       </div>
        <div className={style.category}>
         <h3>Category</h3>
-        {/* {
+        {
           categoryFooter.map(category => {
             
               return (
-                <Link href={category.path} key={category.id} >
-                  <a className={style.listLinks}>{category.label}</a>
+                <Link href={`/category/${category.slug}`} key={category.id} >
+                  <a className={style.listLinks}>{category.name}</a>
                 </Link>
               )
           })
-        } */}
+        }
       </div>
     </footer>
   )
