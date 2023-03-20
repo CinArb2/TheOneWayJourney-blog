@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import styles from '../styles/NotFound.module.css'
 import Layout from '../comps/Layout'
-import { getLogo, getCategories } from '../lib/api'
+import { fetchData } from '../shared/server/gql.server'
+import { categories, logo } from '../shared/queries'
 
 export default function NotFound({ logo, categories }) {
   return (
@@ -20,13 +21,15 @@ export default function NotFound({ logo, categories }) {
 }
 
 export async function getStaticProps() {
-  const logo = await getLogo()
-  const categories = await getCategories()
+  const [responseLogo, responseCategories] = await Promise.all([
+    fetchData(logo),
+    fetchData(categories),
+  ])
 
   return {
     props: {
-      categories,
-      logo: logo?.[0].logoImage.url,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
     },
     revalidate: 10,
   }
