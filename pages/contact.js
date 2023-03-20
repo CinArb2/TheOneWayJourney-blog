@@ -1,7 +1,8 @@
 import Layout from '../comps/Layout'
-import { getLogo, getCategories } from '../lib/api'
 import Head from 'next/head'
 import Form from '../comps/Form'
+import { fetchData } from '../shared/server/gql.server'
+import { categories, logo } from '../shared/queries'
 
 export default function contact({ categories, logo }) {
   return (
@@ -18,13 +19,15 @@ export default function contact({ categories, logo }) {
 }
 
 export async function getStaticProps() {
-  const logo = await getLogo()
-  const categories = await getCategories()
+  const [responseLogo, responseCategories] = await Promise.all([
+    fetchData(logo),
+    fetchData(categories),
+  ])
 
   return {
     props: {
-      categories,
-      logo: logo?.[0].logoImage.url,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
     },
     revalidate: 10,
   }
