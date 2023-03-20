@@ -46,7 +46,7 @@ const Details = ({ post, categories, logo, pageTitle }) => {
                     layout="fill"
                   />
                 </div>
-                <h3>{post.author.name} /</h3>
+                <h3>{post.author?.name} /</h3>
                 <p>{post.date}</p>
               </div>
             </div>
