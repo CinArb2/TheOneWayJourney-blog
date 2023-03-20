@@ -1,8 +1,9 @@
 import styles from '../styles/About.module.css'
 import Layout from '../comps/Layout'
-import { getLogo, getAboutPage, getCategories } from '../lib/api'
 import Image from 'next/image'
 import Head from 'next/head'
+import { fetchData } from '../shared/server/gql.server'
+import { aboutPage, categories, logo } from '../shared/queries'
 
 export default function about({ categories, logo, aboutPage }) {
   return (
@@ -36,15 +37,18 @@ export default function about({ categories, logo, aboutPage }) {
 }
 
 export async function getStaticProps() {
-  const aboutPage = await getAboutPage()
-  const logo = await getLogo()
-  const categories = await getCategories()
+  const [responseAboutPage, responseLogo, responseCategories] =
+    await Promise.all([
+      fetchData(aboutPage),
+      fetchData(logo),
+      fetchData(categories),
+    ])
 
   return {
     props: {
-      categories,
-      logo: logo?.[0].logoImage.url,
-      aboutPage,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
+      aboutPage: responseAboutPage.aboutPages[0],
     },
     revalidate: 10,
   }
