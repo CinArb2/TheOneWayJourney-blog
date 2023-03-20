@@ -1,5 +1,4 @@
-export const posts = `
-       {
+export const posts = `{
         posts(last: 10) {
           id
           slug

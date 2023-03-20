@@ -2,20 +2,15 @@
 /*eslint-env node*/
 
 import { GraphQLClient, gql } from 'graphql-request'
+
 const API_URL = process.env.GRAPHCMS_API_URL
 
-const client = new GraphQLClient({
-  url: API_URL,
-  headers: {},
-})
+const client = new GraphQLClient(API_URL, { headers: {} })
 
 export async function fetchData(query, variables = {}) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
   const queryQL = gql`
     ${query}
   `
-
   const data = await client.request(queryQL, variables)
 
   if (data.errors) {
