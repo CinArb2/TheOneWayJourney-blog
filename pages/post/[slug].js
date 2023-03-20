@@ -1,17 +1,18 @@
 import Layout from '../../comps/Layout'
-import {
-  getLogo,
-  getPost,
-  getAllSlugs,
-  getFeaturedPosts,
-  getCategories,
-  getAuthor,
-  getTags,
-} from '../../lib/api'
 import style from '../../styles/PostDetail.module.css'
 import Image from 'next/image'
 import SocialShare from '../../comps/SocialShare'
 import Head from 'next/head'
+import { fetchData } from '../../shared/server/gql.server'
+import {
+  allSlugs,
+  author,
+  categories,
+  featuredPosts,
+  logo,
+  postBySlug,
+  tags,
+} from '../../shared/queries'
 
 const Details = ({ post, categories, logo, pageTitle }) => {
   return (
@@ -37,18 +38,20 @@ const Details = ({ post, categories, logo, pageTitle }) => {
                 </span>
               ))}
               <h1 className={style.postTitle}>{post.title}</h1>
-              <div className={style.flexContainer}>
-                <div className={style.iconWrapper}>
-                  <Image
-                    src={post.author?.avatar.url}
-                    alt="featured image"
-                    objectFit="cover"
-                    layout="fill"
-                  />
+              {post.author?.avatar.url && (
+                <div className={style.flexContainer}>
+                  <div className={style.iconWrapper}>
+                    <Image
+                      src={post.author?.avatar.url}
+                      alt="featured image"
+                      objectFit="cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3>{post.author?.name} /</h3>
+                  <p>{post.date}</p>
                 </div>
-                <h3>{post.author?.name} /</h3>
-                <p>{post.date}</p>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -67,21 +70,31 @@ export async function getStaticProps(context) {
   const variable = {
     slug: context.params.slug,
   }
-  const post = await getPost(variable)
-  const logo = await getLogo()
-  const featured = await getFeaturedPosts()
-  const author = await getAuthor()
-  const tags = await getTags()
-  const categories = await getCategories()
+
+  const [
+    listPosts,
+    responseLogo,
+    responseFeaturedPosts,
+    responseAuthor,
+    responseTags,
+    responseCategories,
+  ] = await Promise.all([
+    fetchData(postBySlug, variable),
+    fetchData(logo),
+    fetchData(featuredPosts),
+    fetchData(author),
+    fetchData(tags),
+    fetchData(categories),
+  ])
 
   return {
     props: {
-      post,
-      categories,
-      logo: logo?.[0].logoImage.url,
-      featuredPosts: featured,
-      author,
-      tags,
+      post: listPosts?.post,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
+      featuredPosts: responseFeaturedPosts?.posts,
+      author: responseAuthor?.authors,
+      tags: responseTags?.tags,
       pageTitle: context.params.slug,
     },
     revalidate: 10,
@@ -89,9 +102,9 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const slugs = await getAllSlugs()
+  const slugs = await fetchData(allSlugs)
 
-  const paths = slugs.map((el) => ({
+  const paths = slugs?.posts.map((el) => ({
     params: { slug: el.slug },
   }))
 
