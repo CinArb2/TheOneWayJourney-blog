@@ -1,16 +1,16 @@
-.containerFlex{
+.containerFlex {
   display: flex;
   max-width: 1400px;
   margin: 0 auto;
   gap: 2rem;
 }
 
-.containerPost{
+.containerPost {
   width: 60%;
   margin: 0 auto;
 }
 
-.containerAside{
+.containerAside {
   width: 40%;
   margin: 0 auto;
   position: sticky;
@@ -18,7 +18,7 @@
   align-self: flex-start;
 }
 
-.containerTags{
+.containerTags {
   min-height: 200px;
   border: 1px solid rgb(187, 184, 184);
   border-radius: 10px;
@@ -26,11 +26,11 @@
   padding: 2rem;
 }
 
-.containerTags h2{
+.containerTags h2 {
   margin-block: 1rem;
 }
 
-.tagIndv{
+.tagIndv {
   display: inline-block;
   background-color: red;
   color: white;
@@ -41,16 +41,16 @@
   font-size: 2rem;
 }
 
-@media screen and (max-width: 768px){
-  .containerFlex{
+@media screen and (max-width: 768px) {
+  .containerFlex {
     display: block;
   }
 
-  .containerPost{
+  .containerPost {
     width: 90%;
   }
 
-  .containerAside{
+  .containerAside {
     width: 90%;
     margin: 0 auto;
     position: relative;

@@ -1,8 +1,8 @@
-.heroContainer{
+.heroContainer {
   min-height: 380px;
   width: 100%;
-  display: grid; 
-  place-content: center; 
+  display: grid;
+  place-content: center;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -12,7 +12,7 @@
   border-bottom-right-radius: 10px;
 }
 
-.heroContent{
+.heroContent {
   max-width: 380px;
   margin: 0 auto;
   position: relative;
@@ -20,26 +20,26 @@
   padding-inline: 1rem;
 }
 
-.heroText{
+.heroText {
   /* padding-top: 2rem; */
   color: #6e6868;
   font-size: 1.2rem;
   font-family: 'Raleway', sans-serif;
 }
 
-.heroText span{
+.heroText span {
   background-color: white;
   padding-inline: 0.7rem;
 }
 
-.heroVideoContainer{
+.heroVideoContainer {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 80;
 }
 
-.heroBackdrop{
+.heroBackdrop {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -47,17 +47,21 @@
   z-index: 90;
   background-color: #e3e3e375;
   height: 100%;
-  width:100%;
-  background: linear-gradient(to bottom, rgba(251, 251, 251, 0), rgba(0, 0, 0, 0.594));
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(251, 251, 251, 0),
+    rgba(0, 0, 0, 0.594)
+  );
 }
 
-.heroVideo{
+.heroVideo {
   width: 150%;
   height: 150%;
 }
 
-@media screen and (max-width: 670px){
-  .heroVideo{
+@media screen and (max-width: 670px) {
+  .heroVideo {
     width: 200%;
     height: 150%;
   }

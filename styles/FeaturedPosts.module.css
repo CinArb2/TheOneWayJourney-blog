@@ -1,13 +1,13 @@
-.ContainerAside{
+.ContainerAside {
   padding: 2rem 1rem;
 }
 
-.asideTitle{
+.asideTitle {
   position: relative;
 }
 
-.asideTitle::before{
-  content: "";
+.asideTitle::before {
+  content: '';
   height: 5px;
   width: 20%;
   border-radius: 10px;

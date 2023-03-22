@@ -1,15 +1,15 @@
-.container{
+.container {
   min-height: 30vh;
   display: grid;
   place-content: center;
   text-align: center;
 }
 
-.container h1{
+.container h1 {
   font-size: 10rem;
 }
 
-.container a{
+.container a {
   color: black;
   text-decoration: underline;
 }

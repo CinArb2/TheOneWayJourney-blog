@@ -1,4 +1,4 @@
-.socialContainer{
+.socialContainer {
   width: 80%;
   max-width: 1300px;
   margin: 0 auto;
@@ -6,12 +6,12 @@
   padding-block: 2rem;
 }
 
-.socialContainer > *{
+.socialContainer > * {
   margin-block: 1rem;
   margin-inline: 0.5rem;
 }
 
-.socialContainer h3{
+.socialContainer h3 {
   font-size: 2rem;
   padding-top: 2rem;
   background-position: top;
