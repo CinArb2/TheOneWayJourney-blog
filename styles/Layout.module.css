@@ -1,11 +1,10 @@
-
-.container{
+.container {
   position: relative;
 }
-.wavesLayout{
-   font-size: 0;
+.wavesLayout {
+  font-size: 0;
 }
 
-.containerFooter{
+.containerFooter {
   background-color: #f9f9ff;
 }

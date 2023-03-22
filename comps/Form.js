@@ -6,87 +6,86 @@ const Form = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e) => {
-     setFormData(prevFormData => {
-        return {
-            ...prevFormData,
-            [e.target.name]: e.target.value
-        }
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [e.target.name]: e.target.value,
+      }
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (formData.message !== '' && formData.email !== '' ) {
-      
+    if (formData.message !== '' && formData.email !== '') {
       fetch('/api/contact', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
-      })
-      .then((res) => {
+        body: JSON.stringify(formData),
+      }).then((res) => {
         if (res.status === 200) {
-            setSubmitted(true)
-            setFormData({
-              name: '',
-              email: '',
-              message: ''
-            })
-          }
-        })
+          setSubmitted(true)
+          setFormData({
+            name: '',
+            email: '',
+            message: '',
+          })
+        }
+      })
     }
-    
   }
-  
+
   return (
     <>
-    {submitted && <Modal setSubmitted={setSubmitted}/>}
-    <div className={styles.container}>
+      {submitted && <Modal setSubmitted={setSubmitted} />}
+      <div className={styles.container}>
         <h1>Contact us</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.formTop}>
-            <div className={styles.containerHeader}> 
-            <label htmlFor="" className={styles.top}>
-            Your name
-            </label>
-                <input
-                  type="text"
-                  name='name'
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={styles.inputTop} />
+            <div className={styles.containerHeader}>
+              <label htmlFor="" className={styles.top}>
+                Your name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.inputTop}
+              />
             </div>
             <div className={styles.containerHeader}>
               <label htmlFor="" className={styles.top}>
-              Your email
+                Your email
               </label>
-                <input
-                  type="email"
-                  name='email'
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={styles.inputTop} />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.inputTop}
+              />
             </div>
           </div>
           <div className={styles.formBottom}>
-            <label htmlFor="" className={styles.bottom}> 
-            Your message
+            <label htmlFor="" className={styles.bottom}>
+              Your message
             </label>
-              <textarea
-                name='message'
-                value={formData.message}
-                onChange={handleChange}
-                className={styles.inputBottom} />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className={styles.inputBottom}
+            />
           </div>
           <button>Submit</button>
-          
         </form>
       </div>
     </>
