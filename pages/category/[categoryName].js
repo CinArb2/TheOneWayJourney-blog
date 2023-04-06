@@ -1,5 +1,3 @@
-
-import { getLogo, getFeaturedPosts, getAuthor, getTags, getPostsByCategory, getCategories } from '../../lib/api'
 import Layout from '../../comps/Layout'
 import PostCard from '../../comps/PostCard'
 import FeaturedPosts from '../../comps/FeaturedPosts'
@@ -7,74 +5,94 @@ import Author from '../../comps/Author'
 import Tags from '../../comps/Tags'
 import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
+import { fetchData } from '../../shared/server/gql.server'
+import {
+  author,
+  categories,
+  featuredPosts,
+  logo,
+  postsByCategory,
+  tags,
+} from '../../shared/queries'
 
-const Category = ({ posts, menu, logo, featuredPosts, author, tags, categories, pageTitle }) => {
-  
+const Category = ({
+  posts,
+  logo,
+  featuredPosts,
+  author,
+  tags,
+  categories,
+  pageTitle,
+}) => {
   return (
     <>
       <Head>
         <title>The One Way Journey - {pageTitle}</title>
-        <link rel='icon' href={logo}/>
+        <link rel="icon" href={logo} />
       </Head>
-    <Layout menu={categories} logo={logo}>
-      <div className={styles.containerFlex}>
-        <div className={styles.containerPost}>
-          {
-            posts.map(post => (
-              <PostCard key={post.id} post={post}/>
-            ))
-          }
+      <Layout menu={categories} logo={logo}>
+        <div className={styles.containerFlex}>
+          <div className={styles.containerPost}>
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+          <aside className={styles.containerAside}>
+            <Author author={author} />
+            <FeaturedPosts featuredPosts={featuredPosts} />
+            <Tags tags={tags} />
+          </aside>
         </div>
-        <aside className={styles.containerAside}>
-          <Author author={author}/>
-          <FeaturedPosts featuredPosts={featuredPosts} />
-          <Tags tags={tags}/>
-        </aside>
-      </div>
       </Layout>
-      </>
+    </>
   )
 }
 
 export async function getStaticProps(context) {
-  
   const variable = {
     slug: context.params.categoryName,
   }
 
-  const posts = await getPostsByCategory(variable)
-  const logo = await getLogo()
-  const featured = await getFeaturedPosts()
-  const author = await getAuthor()
-  const tags = await getTags()
-  const categories = await getCategories()
+  const [
+    listPosts,
+    responseLogo,
+    responseFeaturedPosts,
+    responseAuthor,
+    responseTags,
+    responseCategories,
+  ] = await Promise.all([
+    fetchData(postsByCategory, variable),
+    fetchData(logo),
+    fetchData(featuredPosts),
+    fetchData(author),
+    fetchData(tags),
+    fetchData(categories),
+  ])
 
   return {
     props: {
-      posts,
-      categories,
-      logo: logo?.[0].logoImage.url,
-      featuredPosts: featured,
-      author,
-      tags,
-      pageTitle: context.params.categoryName
+      posts: listPosts?.posts,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
+      featuredPosts: responseFeaturedPosts?.posts,
+      author: responseAuthor?.authors,
+      tags: responseTags?.tags,
     },
     revalidate: 10,
   }
 }
 
 export async function getStaticPaths() {
-  const categories = await getCategories()
+  const responseCategories = await fetchData(categories)
 
-  const paths = categories.map((category) => ({
-    params: {categoryName: category.name},
+  const paths = responseCategories?.categories.map((category) => ({
+    params: { categoryName: category.name },
   }))
-  
+
   return {
     paths,
     fallback: 'blocking',
   }
 }
 
-
-export default Category;
+export default Category

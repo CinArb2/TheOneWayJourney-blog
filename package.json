@@ -6,19 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "dependencies": {
     "graphql": "^16.5.0",
     "graphql-request": "^4.2.0",
     "next": "12.1.2",
-    "next-share": "^0.13.0",
+    "next-share": "^0.19.0",
+    "node": "^19.8.1",
     "nodemailer": "^6.7.3",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "eslint": "8.12.0",
-    "eslint-config-next": "12.1.2"
+    "eslint": "^8.36.0",
+    "eslint-config-next": "^13.2.4",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "yarn prettier --write ./",
+      "yarn eslint --fix ./"
+    ]
   }
 }

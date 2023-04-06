@@ -1,33 +1,33 @@
 import Layout from '../comps/Layout'
-import { getAllMenus, getLogo, getCategoryFooter, getCategories } from '../lib/api'
 import Head from 'next/head'
 import Form from '../comps/Form'
+import { fetchData } from '../shared/server/gql.server'
+import { categories, logo } from '../shared/queries'
 
 export default function contact({ categories, logo }) {
-
-  
   return (
     <>
       <Head>
         <title>The One Way Journey - Contact</title>
-        <link rel='icon' href={logo}/>
+        <link rel="icon" href={logo} />
       </Head>
       <Layout menu={categories} logo={logo}>
-        <Form/>
+        <Form />
       </Layout>
     </>
   )
 }
 
 export async function getStaticProps() {
-  
-  const logo = await getLogo()
-  const categories = await getCategories()
+  const [responseLogo, responseCategories] = await Promise.all([
+    fetchData(logo),
+    fetchData(categories),
+  ])
 
   return {
     props: {
-      categories,
-      logo: logo?.[0].logoImage.url,
+      categories: responseCategories?.categories,
+      logo: responseLogo.logos[0].logoImage.url,
     },
     revalidate: 10,
   }
