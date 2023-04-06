@@ -1,9 +1,10 @@
 export const posts = `{
-        posts(last: 10) {
+        posts(orderBy:  createdAt_DESC) {
           id
           slug
           title
           summary
+          createdAt
           featuredImage {
             url
           }
