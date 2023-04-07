@@ -39,9 +39,9 @@ export default function Home({
             ))}
           </div>
           <aside className={styles.containerAside}>
-            <Author author={author} />
             <FeaturedPosts featuredPosts={featuredPosts} />
             <Tags tags={tags} />
+            <Author author={author} />
           </aside>
         </div>
       </Layout>
