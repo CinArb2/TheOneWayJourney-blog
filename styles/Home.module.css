@@ -12,9 +12,9 @@
 
 .containerAside {
   width: 40%;
-  margin: 0 auto;
+  margin: 2.5rem auto;
   position: sticky;
-  top: 2rem;
+  top: 5rem;
   align-self: flex-start;
 }
 

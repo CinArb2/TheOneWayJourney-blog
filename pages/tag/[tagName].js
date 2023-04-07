@@ -42,9 +42,9 @@ const Category = ({
             ))}
           </div>
           <aside className={styles.containerAside}>
-            <Author author={author} />
-            <FeaturedPosts featuredPosts={featuredPosts} />
             <Tags tags={tags} />
+            <FeaturedPosts featuredPosts={featuredPosts} />
+            <Author author={author} />
           </aside>
         </div>
       </Layout>
@@ -96,7 +96,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 

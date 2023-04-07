@@ -38,9 +38,9 @@ const Category = ({
             ))}
           </div>
           <aside className={styles.containerAside}>
-            <Author author={author} />
             <FeaturedPosts featuredPosts={featuredPosts} />
             <Tags tags={tags} />
+            <Author author={author} />
           </aside>
         </div>
       </Layout>
@@ -86,12 +86,12 @@ export async function getStaticPaths() {
   const responseCategories = await fetchData(categories)
 
   const paths = responseCategories?.categories.map((category) => ({
-    params: { categoryName: category.name },
+    params: { categoryName: category.name.toLowerCase() },
   }))
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
