@@ -34,6 +34,9 @@ const Footer = ({ categoryFooter, logo }) => {
         <Link href="/contact">
           <a className={style.listLinks}>Contact us</a>
         </Link>
+        <Link href="/sitemap.xml">
+          <a className={style.listLinks}>Site map</a>
+        </Link>
       </div>
       <div className={style.category}>
         <h3>Category</h3>
