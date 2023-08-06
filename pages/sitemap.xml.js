@@ -17,14 +17,14 @@ function generateSiteMap(posts) {
        <loc>${URL}/contact</loc>
      </url>
      ${posts.posts
-       .map(({ slug }) => {
-         return `
+    .map(({ slug }) => {
+      return `
            <url>
                <loc>${`${URL}/post/${slug}`}</loc>
            </url>
          `
-       })
-       .join('')}
+    })
+    .join('')}
    </urlset>
  `
 }
