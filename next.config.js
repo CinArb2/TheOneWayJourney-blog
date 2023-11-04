@@ -2,13 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      // 'https://onewayjourney.000webhostapp.com',
-      'media.graphassets.com',
-      '0.gravatar.com',
-      'secure.gravatar.com',
-      'localhost']
-  }
+    remotePatterns: [
+      {
+        hostname: 'media.graphassets.com',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
