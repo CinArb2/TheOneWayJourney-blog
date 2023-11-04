@@ -2,7 +2,7 @@ import styles from '../styles/Author.module.css'
 import Image from 'next/image'
 
 const Author = ({ author }) => {
-  const mainAuthor = author[0]
+  const mainAuthor = author?.[0]
 
   return (
     <div className={styles.authorWrapper}>
@@ -20,7 +20,7 @@ const Author = ({ author }) => {
       </div>
       <div className={styles.authorImgWrapper}>
         <Image
-          src={mainAuthor.avatar.url}
+          src={mainAuthor?.avatar?.url}
           alt="icon-author"
           fill
           sizes="100vw"
@@ -29,10 +29,12 @@ const Author = ({ author }) => {
           }}
         />
       </div>
-      <h3 className={styles.authorTitle}>{mainAuthor.name}</h3>
+      <h3 className={styles.authorTitle}>{mainAuthor?.name}</h3>
       <div
         className={styles.authorContent}
-        dangerouslySetInnerHTML={{ __html: mainAuthor.description.html }}
+        dangerouslySetInnerHTML={{
+          __html: `<p>${mainAuthor?.description.html}</p>`,
+        }}
       />
     </div>
   )

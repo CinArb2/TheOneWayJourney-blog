@@ -6,7 +6,7 @@ const Tags = ({ tags }) => {
     <div className={style.tagContainer}>
       <h1 className={style.tagsTitle}>Tags</h1>
       <div className={style.tagsList}>
-        {tags.map((tag) => (
+        {tags?.map((tag) => (
           <Link href={`/tag/${tag.slug}`} key={tag.id}>
             <span className={style.tags}>{tag.name}</span>
           </Link>

@@ -19,7 +19,7 @@ const PostCard = ({ post }) => {
               }}
             />
             <div className={style.textImgWrapper}>
-              {post.tags.map((tag) => (
+              {post.tags?.map((tag) => (
                 <span key={tag.id} className={style.tag}>
                   {tag.name}
                 </span>
