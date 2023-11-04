@@ -1,13 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import style from '../styles/Navbar.module.css'
-import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
 const Navbar = ({ menu, logo }) => {
-  const router = useRouter()
-  const currentRoute =
-    router.asPath.length > 1 ? router.asPath + '/' : router.asPath
   const [hideHeader, setHideHeader] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -32,8 +28,13 @@ const Navbar = ({ menu, logo }) => {
         className={`${style.headerContainer} ${hideHeader ? style.active : ''}`}
       >
         <Link href="/">
-          <a>
-            <div className={style.logoContainer}>
+          <div className={style.logoContainer}>
+            <Image src={logo} alt="icon-logo" objectFit="cover" layout="fill" />
+          </div>
+        </Link>
+        <nav className={style.Navbar}>
+          <Link href="/">
+            <div className={style.logoNavbar}>
               <Image
                 src={logo}
                 alt="icon-logo"
@@ -41,70 +42,24 @@ const Navbar = ({ menu, logo }) => {
                 layout="fill"
               />
             </div>
-          </a>
-        </Link>
-        <nav className={style.Navbar}>
-          <Link href="/">
-            <a className={hideHeader ? '' : style.hide}>
-              <div className={style.logoNavbar}>
-                <Image
-                  src={logo}
-                  alt="icon-logo"
-                  objectFit="cover"
-                  layout="fill"
-                />
-              </div>
-            </a>
           </Link>
-          <Link href="/">
-            <a className={currentRoute === '/' ? style.active : style.Link}>
-              Home
-            </a>
-          </Link>
+          <Link href="/">Home</Link>
           {menu.map((menuItem) => {
             return (
               <Link key={menuItem.id} href={`/category/${menuItem.slug}`}>
-                <a
-                  className={
-                    currentRoute === `/category/${menuItem.slug}/`
-                      ? style.active
-                      : style.Link
-                  }
-                >
-                  {menuItem.name}
-                </a>
+                {menuItem.name}
               </Link>
             )
           })}
-          <Link href="/about">
-            <a
-              className={currentRoute === '/about/' ? style.active : style.Link}
-            >
-              About us
-            </a>
-          </Link>
-          <Link href="/contact">
-            <a
-              className={
-                currentRoute === '/contact/' ? style.active : style.Link
-              }
-            >
-              Contact us
-            </a>
-          </Link>
+          <Link href="/about">About us</Link>
+          <Link href="/contact">Contact us</Link>
         </nav>
       </header>
       <nav className={`${style.NavbarMobile} ${open ? style.active : ''}`}>
         {menu.map((menuItem) => {
           return (
             <Link key={menuItem.id} href={`/category/${menuItem.slug}`}>
-              <a
-                className={
-                  currentRoute === menuItem.name ? style.active : style.Link
-                }
-              >
-                {menuItem.name}
-              </a>
+              {menuItem.name}
             </Link>
           )
         })}

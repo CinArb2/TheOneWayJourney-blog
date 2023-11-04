@@ -11,9 +11,7 @@ export default function NotFound({ logo, categories }) {
         <h1>404</h1>
         <p>
           It looks like nothing was found at this location.{' '}
-          <Link href="/">
-            <a>Return to Home Page</a>
-          </Link>
+          <Link href="/">Return to Home Page</Link>
         </p>
       </div>
     </Layout>

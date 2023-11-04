@@ -8,9 +8,7 @@ const Tags = ({ tags }) => {
       <div className={style.tagsList}>
         {tags.map((tag) => (
           <Link href={`/tag/${tag.slug}`} key={tag.id}>
-            <a>
-              <span className={style.tags}>{tag.name}</span>
-            </a>
+            <span className={style.tags}>{tag.name}</span>
           </Link>
         ))}
       </div>

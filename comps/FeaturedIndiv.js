@@ -15,9 +15,7 @@ const FeaturedIndiv = ({ feat }) => {
       </div>
       <div className={styles.FeaturedBody}>
         <Link href={`/post/${feat.slug}`}>
-          <a className={styles.FeaturedTitle}>
-            <h3>{feat.title}</h3>
-          </a>
+          <h3>{feat.title}</h3>
         </Link>
         <p className={styles.FeaturedAuthor}>
           {' '}

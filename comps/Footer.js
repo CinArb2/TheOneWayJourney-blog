@@ -7,16 +7,9 @@ const Footer = ({ categoryFooter, logo }) => {
     <footer className={style.footer}>
       <div className={style.footerLogo}>
         <Link href="/">
-          <a>
-            <div className={style.logoContainer}>
-              <Image
-                src={logo}
-                alt="icon-logo"
-                objectFit="cover"
-                layout="fill"
-              />
-            </div>
-          </a>
+          <div className={style.logoContainer}>
+            <Image src={logo} alt="icon-logo" objectFit="cover" layout="fill" />
+          </div>
         </Link>
       </div>
       <div className={style.footerDescription}>
@@ -25,25 +18,17 @@ const Footer = ({ categoryFooter, logo }) => {
       </div>
       <div className={style.quickLinks}>
         <h3>Quick Links</h3>
-        <Link href="/">
-          <a className={style.listLinks}>Home</a>
-        </Link>
-        <Link href="/about">
-          <a className={style.listLinks}>About us</a>
-        </Link>
-        <Link href="/contact">
-          <a className={style.listLinks}>Contact us</a>
-        </Link>
-        <Link href="/sitemap.xml">
-          <a className={style.listLinks}>Site map</a>
-        </Link>
+        <Link href="/">Home</Link>
+        <Link href="/about">About us</Link>
+        <Link href="/contact">Contact us</Link>
+        <Link href="/sitemap.xml">Site map</Link>
       </div>
       <div className={style.category}>
         <h3>Category</h3>
         {categoryFooter.map((category) => {
           return (
             <Link href={`/category/${category.slug}`} key={category.id}>
-              <a className={style.listLinks}>{category.name}</a>
+              {category.name}
             </Link>
           )
         })}

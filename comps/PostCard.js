@@ -32,9 +32,9 @@ const PostCard = ({ post }) => {
             <p>{post.summary}</p>
           </div>
 
-          <Link href={`/post/${post.slug}/`}>
+          {/* <Link href={`/post/${post.slug}/`}>
             <button className={style.buttonCard}>Read More</button>
-          </Link>
+          </Link> */}
         </div>
       </Link>
     </div>
