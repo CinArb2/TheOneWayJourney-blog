@@ -12,8 +12,11 @@ const PostCard = ({ post }) => {
             <Image
               src={post.featuredImage.url}
               alt="icon-logo"
-              objectFit="cover"
-              layout="fill"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
             />
             <div className={style.textImgWrapper}>
               {post.tags.map((tag) => (

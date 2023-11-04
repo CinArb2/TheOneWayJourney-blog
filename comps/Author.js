@@ -11,16 +11,22 @@ const Author = ({ author }) => {
         <Image
           src="/bgAuthor2.jpg"
           alt="icon-author"
-          objectFit="cover"
-          layout="fill"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </div>
       <div className={styles.authorImgWrapper}>
         <Image
           src={mainAuthor.avatar.url}
           alt="icon-author"
-          objectFit="cover"
-          layout="fill"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </div>
       <h3 className={styles.authorTitle}>{mainAuthor.name}</h3>

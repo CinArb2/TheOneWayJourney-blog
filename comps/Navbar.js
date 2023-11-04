@@ -29,7 +29,15 @@ const Navbar = ({ menu, logo }) => {
       >
         <Link href="/">
           <div className={style.logoContainer}>
-            <Image src={logo} alt="icon-logo" objectFit="cover" layout="fill" />
+            <Image
+              src={logo}
+              alt="icon-logo"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
           </div>
         </Link>
         <nav className={style.Navbar}>
@@ -38,8 +46,11 @@ const Navbar = ({ menu, logo }) => {
               <Image
                 src={logo}
                 alt="icon-logo"
-                objectFit="cover"
-                layout="fill"
+                fill
+                sizes="100vw"
+                style={{
+                  objectFit: 'cover',
+                }}
               />
             </div>
           </Link>

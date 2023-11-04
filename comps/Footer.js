@@ -8,7 +8,15 @@ const Footer = ({ categoryFooter, logo }) => {
       <div className={style.footerLogo}>
         <Link href="/">
           <div className={style.logoContainer}>
-            <Image src={logo} alt="icon-logo" objectFit="cover" layout="fill" />
+            <Image
+              src={logo}
+              alt="icon-logo"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
           </div>
         </Link>
       </div>

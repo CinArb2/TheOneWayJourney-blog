@@ -19,8 +19,11 @@ export default function about({ categories, logo, aboutPage }) {
             <Image
               src={aboutPage.featureImageAbout.url}
               alt="featured image"
-              objectFit="cover"
-              layout="fill"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
             />
           </div>
           <div className={styles.headerTitle}>

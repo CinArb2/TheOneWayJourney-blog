@@ -28,8 +28,11 @@ const Details = ({ post, categories, logo, pageTitle }) => {
             <Image
               src={post.featuredImage?.url}
               alt="featured image"
-              objectFit="cover"
-              layout="fill"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
             />
             <div className={style.headerTitle}>
               {post.tags?.map((tag) => (
@@ -44,8 +47,11 @@ const Details = ({ post, categories, logo, pageTitle }) => {
                     <Image
                       src={post.author?.avatar.url}
                       alt="featured image"
-                      objectFit="cover"
-                      layout="fill"
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: 'cover',
+                      }}
                     />
                   </div>
                   <h3>{post.author?.name} /</h3>

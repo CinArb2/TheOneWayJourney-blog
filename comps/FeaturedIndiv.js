@@ -9,8 +9,11 @@ const FeaturedIndiv = ({ feat }) => {
         <Image
           src={feat.featuredImage.url}
           alt="icon-logo"
-          objectFit="cover"
-          layout="fill"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </div>
       <div className={styles.FeaturedBody}>
