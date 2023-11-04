@@ -9,7 +9,8 @@
     "lint": "next lint",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postpack": "pinst --enable",
+    "clean": "rimraf .next node_modules && pnpm install"
   },
   "dependencies": {
     "graphql": "^16.5.0",
@@ -19,7 +20,8 @@
     "node": "^19.8.1",
     "nodemailer": "^6.7.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "eslint": "^8.36.0",
