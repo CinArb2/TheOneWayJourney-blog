@@ -4,6 +4,7 @@ import React from 'react'
 import SocialShare from '../../../comps/SocialShare'
 import { fetchData } from '../../../shared/server/gql.server'
 import { allSlugs, postBySlug } from '../../../shared/queries'
+import { notFound } from 'next/navigation'
 
 export async function getPost(params) {
   const variable = {
@@ -25,6 +26,10 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const { post } = await getPost(params)
+
+  if (!post) {
+    notFound()
+  }
 
   return (
     <>
