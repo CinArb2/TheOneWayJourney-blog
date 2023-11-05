@@ -1,18 +1,28 @@
 /*eslint no-undef: "error"*/
 /*eslint-env node*/
+import nodemailer from 'nodemailer'
 
 export default async function (req, res) {
-  let nodemailer = require('nodemailer')
+  const { email, name, message } = await req.body
 
   const transporter = nodemailer.createTransport({
-    port: 465,
-    host: 'smtp.gmail.com',
+    service: 'gmail',
+    /*
+      setting service as 'gmail' is same as providing these setings:
+
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true
+
+      If you want to use a different email provider other than gmail, you need to provide these manually.
+      Or you can go use these well known services and their settings at
+      https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
+  */
     auth: {
-      type: 'login',
       user: 'owjemail@gmail.com',
       pass: process.env.PASSWORD,
     },
-    secure: true,
+    secure: false,
   })
 
   await new Promise((resolve, reject) => {
@@ -29,13 +39,14 @@ export default async function (req, res) {
   })
 
   const mailData = {
-    from: 'owjemail@gmail.com',
-    to: 'theonewayjourneyblog92@gmail.com',
-    subject: `Message From ${req.body.name}`,
-    text: req.body.message + ' | Sent from: ' + req.body.email,
-    html: `<div>${req.body.message}</div><p>Sent from:
-    ${req.body.email}</p>`,
+    from: process.env.EMAIL,
+    to: process.env.EMAIL,
+    subject: `Message From ${name}`,
+    text: message + ' | Sent from: ' + email,
+    html: `<div>${message}</div><p>Sent from:
+    ${email}</p>`,
   }
+
   await new Promise((resolve, reject) => {
     transporter.sendMail(mailData, function (err, info) {
       if (err) {

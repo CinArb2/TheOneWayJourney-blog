@@ -1,45 +1,21 @@
 import { useState } from 'react'
 import Modal from './Modal'
 import styles from '../styles/Form.module.css'
+import { useForm } from 'react-hook-form'
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const { register, handleSubmit } = useForm()
   const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (e) => {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [e.target.name]: e.target.value,
-      }
+  const onSubmit = (data) => {
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (formData.message !== '' && formData.email !== '') {
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      }).then((res) => {
-        if (res.status === 200) {
-          setSubmitted(true)
-          setFormData({
-            name: '',
-            email: '',
-            message: '',
-          })
-        }
-      })
-    }
   }
 
   return (
@@ -47,7 +23,7 @@ const Form = () => {
       {submitted && <Modal setSubmitted={setSubmitted} />}
       <div className={styles.container}>
         <h1>Contact us</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formTop}>
             <div className={styles.containerHeader}>
               <label htmlFor="" className={styles.top}>
@@ -55,9 +31,7 @@ const Form = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                {...register('name', { required: true })}
                 className={styles.inputTop}
               />
             </div>
@@ -67,9 +41,7 @@ const Form = () => {
               </label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                {...register('email', { required: true })}
                 className={styles.inputTop}
               />
             </div>
@@ -79,9 +51,7 @@ const Form = () => {
               Your message
             </label>
             <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
+              {...register('message', { required: true, maxLength: 200 })}
               className={styles.inputBottom}
             />
           </div>
