@@ -4,23 +4,20 @@ import styles from '../styles/Home.module.css'
 import PostCard from '../comps/PostCard'
 import FeaturedPosts from '../comps/FeaturedPosts'
 import Author from './components/author'
-import Tags from '../comps/Tags'
+import Tags from './components/tags'
 import { fetchData } from '../shared/server/gql.server'
-import { posts, featuredPosts, author, tags } from '../shared/queries'
+import { posts, featuredPosts } from '../shared/queries'
 
 async function getPosts() {
   try {
-    const [listPosts, responseFeaturedPosts, responseTags] = await Promise.all([
+    const [listPosts, responseFeaturedPosts] = await Promise.all([
       fetchData(posts),
       fetchData(featuredPosts),
-      fetchData(author),
-      fetchData(tags),
     ])
 
     return {
       ...listPosts,
       featuredPosts: responseFeaturedPosts?.posts,
-      ...responseTags,
     }
   } catch (error) {
     // Handle the error here
@@ -30,7 +27,7 @@ async function getPosts() {
 }
 
 export default async function Home() {
-  const { posts, featuredPosts, tags } = await getPosts()
+  const { posts, featuredPosts } = await getPosts()
 
   return (
     <>
@@ -43,7 +40,7 @@ export default async function Home() {
         </div>
         <aside className={styles.containerAside}>
           <FeaturedPosts featuredPosts={featuredPosts} />
-          <Tags tags={tags} />
+          <Tags />
           <Author />
         </aside>
       </div>
