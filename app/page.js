@@ -7,39 +7,28 @@ import FeaturedPosts from '../comps/FeaturedPosts'
 import Author from '../comps/Author'
 import Tags from '../comps/Tags'
 import { fetchData } from '../shared/server/gql.server'
-import {
-  posts,
-  // logo,
-  featuredPosts,
-  author,
-  tags,
-  // categories,
-} from '../shared/queries'
+import { posts, featuredPosts, author, tags } from '../shared/queries'
 
 async function getPosts() {
-  const [
-    listPosts,
-    // responseLogo,
-    responseFeaturedPosts,
-    responseAuthor,
-    responseTags,
-    // responseCategories,
-  ] = await Promise.all([
-    fetchData(posts),
-    // fetchData(logo),
-    fetchData(featuredPosts),
-    fetchData(author),
-    fetchData(tags),
-    // fetchData(categories),
-  ])
+  try {
+    const [listPosts, responseFeaturedPosts, responseAuthor, responseTags] =
+      await Promise.all([
+        fetchData(posts),
+        fetchData(featuredPosts),
+        fetchData(author),
+        fetchData(tags),
+      ])
 
-  return {
-    ...listPosts,
-    // logo: responseLogo?.logos?.[0]?.logoImage?.url,
-    featuredPosts: responseFeaturedPosts?.posts,
-    ...responseAuthor,
-    ...responseTags,
-    // ...responseCategories,
+    return {
+      ...listPosts,
+      featuredPosts: responseFeaturedPosts?.posts,
+      ...responseAuthor,
+      ...responseTags,
+    }
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching posts:', error)
+    throw error // Re-throw the error to propagate it to the caller if needed
   }
 }
 
@@ -48,7 +37,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Layout menu={categories} logo={logo}> */}
       <Hero />
       <div className={styles.containerFlex}>
         <div className={styles.containerPost}>
@@ -62,7 +50,6 @@ export default async function Home() {
           <Author author={author} />
         </aside>
       </div>
-      {/* </Layout> */}
     </>
   )
 }

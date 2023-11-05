@@ -10,10 +10,14 @@ export async function getPost(params) {
   const variable = {
     slug: params.slug,
   }
-
-  const post = await fetchData(postBySlug, variable)
-
-  return post
+  try {
+    const post = await fetchData(postBySlug, variable)
+    return post
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching post:', error)
+    throw error // Re-throw the error to propagate it to the caller if needed
+  }
 }
 
 export async function generateStaticParams() {
