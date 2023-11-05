@@ -32,12 +32,11 @@ async function getPosts() {
     fetchData(tags),
     fetchData(categories),
   ])
-  console.log(responseLogo.logos[0].logoImage.url)
 
   return {
     ...listPosts,
-    logo: responseLogo.logos[0].logoImage.url,
-    featuredPosts: responseFeaturedPosts.posts,
+    logo: responseLogo?.logos?.[0]?.logoImage?.url,
+    featuredPosts: responseFeaturedPosts?.posts,
     ...responseAuthor,
     ...responseTags,
     ...responseCategories,
