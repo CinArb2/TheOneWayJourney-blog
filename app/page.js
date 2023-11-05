@@ -2,23 +2,17 @@ import React from 'react'
 import Hero from '../comps/Hero'
 import styles from '../styles/Home.module.css'
 import PostCard from '../comps/PostCard'
-import FeaturedPosts from '../comps/FeaturedPosts'
+import FeaturedPosts from './components/featured-posts'
 import Author from './components/author'
 import Tags from './components/tags'
 import { fetchData } from '../shared/server/gql.server'
-import { posts, featuredPosts } from '../shared/queries'
+import { posts } from '../shared/queries'
 
 async function getPosts() {
   try {
-    const [listPosts, responseFeaturedPosts] = await Promise.all([
-      fetchData(posts),
-      fetchData(featuredPosts),
-    ])
+    const postsRes = await fetchData(posts)
 
-    return {
-      ...listPosts,
-      featuredPosts: responseFeaturedPosts?.posts,
-    }
+    return postsRes
   } catch (error) {
     // Handle the error here
     console.error('Error fetching posts:', error)
@@ -27,7 +21,7 @@ async function getPosts() {
 }
 
 export default async function Home() {
-  const { posts, featuredPosts } = await getPosts()
+  const { posts } = await getPosts()
 
   return (
     <>
@@ -39,7 +33,7 @@ export default async function Home() {
           ))}
         </div>
         <aside className={styles.containerAside}>
-          <FeaturedPosts featuredPosts={featuredPosts} />
+          <FeaturedPosts />
           <Tags />
           <Author />
         </aside>
