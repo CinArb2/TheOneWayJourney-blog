@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostCard from '@/comps/PostCard'
+import PostCard from '@/components/post-card'
 import { postsQuery } from '@/shared/queries'
 import { getPosts } from '@/shared/server/get-posts'
 

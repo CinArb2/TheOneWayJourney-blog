@@ -1,7 +1,8 @@
 import style from '@/styles/FeaturedPosts.module.css'
-import FeaturedIndiv from '@/comps/FeaturedIndiv'
+import FeaturedIndiv from './feature-individual'
 import { fetchData } from '@/shared/server/gql.server'
 import { featuredPosts } from '@/shared/queries'
+import { DetailedPostList } from '@/shared/types/posts'
 
 export async function getFeaturedPosts() {
   try {
@@ -14,13 +15,13 @@ export async function getFeaturedPosts() {
 }
 
 export default async function FeaturedPosts() {
-  const { posts: featuredPosts } = await getFeaturedPosts()
+  const { posts: featuredPosts }: DetailedPostList = await getFeaturedPosts()
 
   return (
     <div className={style.ContainerAside}>
       <h2 className={style.asideTitle}>Featured posts</h2>
-      {featuredPosts?.map((feat) => (
-        <FeaturedIndiv key={feat.id} feat={feat} />
+      {featuredPosts?.map((post) => (
+        <FeaturedIndiv key={post.id} post={post} />
       ))}
     </div>
   )

@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import style from '@/styles/PostCard.module.css'
+import { SummaryPost } from '@/shared/types/posts'
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post }: { post: SummaryPost }) => {
   return (
     <div className={style.cardWrapper}>
       <Link href={`/post/${post.slug}/`}>

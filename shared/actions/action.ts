@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 // doesn't get sent to the client
 import nodemailer from 'nodemailer'
 
-export async function sendEmail(prevState, formData) {
+export async function sendEmail(prevState: any, formData: FormData) {
   const email = formData.get('email')
   const name = formData.get('name')
   const message = formData.get('message')

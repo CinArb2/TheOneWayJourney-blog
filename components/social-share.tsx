@@ -1,4 +1,5 @@
 'use client'
+import { Post } from '@/shared/types/posts'
 import style from '@/styles/SocialShare.module.css'
 import {
   FacebookShareButton,
@@ -13,7 +14,7 @@ import {
   LinkedinIcon,
 } from 'next-share'
 
-const SocialShare = ({ post }) => {
+const SocialShare = ({ post }: { post: Post }) => {
   return (
     <div className={style.socialContainer}>
       <h3>Share Article</h3>
@@ -23,6 +24,7 @@ const SocialShare = ({ post }) => {
         <FacebookIcon size={50} round />
       </FacebookShareButton>
       <PinterestShareButton
+        media={`https://www.theonewayjourney.com/post/${post.slug}/`}
         url={`https://www.theonewayjourney.com/post/${post.slug}/`}
       >
         <PinterestIcon size={50} round />

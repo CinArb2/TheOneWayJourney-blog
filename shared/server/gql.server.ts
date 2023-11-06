@@ -1,13 +1,12 @@
 /*eslint no-undef: "error"*/
 /*eslint-env node*/
-
 import { GraphQLClient, gql } from 'graphql-request'
 
-const API_URL = process.env.GRAPHCMS_API_URL
+const API_URL = process.env.GRAPHCMS_API_URL ?? ''
 
 const client = new GraphQLClient(API_URL, { headers: {} })
 
-export async function fetchData(query, variables = {}) {
+export async function fetchData(query: string, variables = {}) {
   const queryQL = gql`
     ${query}
   `

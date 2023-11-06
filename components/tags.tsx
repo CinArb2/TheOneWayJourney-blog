@@ -3,6 +3,7 @@ import Link from 'next/link'
 import style from '@/styles/Tags.module.css'
 import { tags } from '@/shared/queries'
 import { fetchData } from '@/shared/server/gql.server'
+import { Tag } from '@/shared/types/posts'
 
 export async function getTags() {
   try {
@@ -15,7 +16,7 @@ export async function getTags() {
 }
 
 export default async function Tags() {
-  const { tags } = await getTags()
+  const { tags }: { tags: Tag[] } = await getTags()
 
   return (
     <div className={style.tagContainer}>

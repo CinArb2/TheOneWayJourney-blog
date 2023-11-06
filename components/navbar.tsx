@@ -2,8 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from '@/styles/Navbar.module.css'
 import { useState, useEffect } from 'react'
+import { Category } from '@/shared/types/posts'
 
-const Navbar = ({ menu, logo }) => {
+const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
   const [hideHeader, setHideHeader] = useState(false)
   const [open, setOpen] = useState(false)
 

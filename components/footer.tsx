@@ -1,8 +1,15 @@
 import style from '@/styles/Footer.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Category } from '@/shared/types/posts'
 
-const Footer = ({ categoryFooter, logo }) => {
+const Footer = ({
+  categoryFooter,
+  logo,
+}: {
+  categoryFooter: Category[]
+  logo: string
+}) => {
   return (
     <footer className={style.footer}>
       <div className={style.footerLogo}>

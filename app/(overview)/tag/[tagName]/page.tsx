@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostCard from '@/comps/PostCard'
+import PostCard from '@/components/post-card'
 import { fetchData } from '@/shared/server/gql.server'
 import { postByTag, tags } from '@/shared/queries'
 import { Tag } from '@/shared/types/posts'
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: {
-    params: { tagName: string }
+  params: { tagName: string }
 }) {
   const { posts } = await getPosts(postByTag, params.tagName)
 

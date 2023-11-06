@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostCard from '@/comps/PostCard'
+import PostCard from '@/components/post-card'
 import { fetchData } from '@/shared/server/gql.server'
 import { categories, postsByCategory } from '@/shared/queries'
 import { getPosts } from '@/shared/server/get-posts'
@@ -12,7 +12,9 @@ interface Categorie {
 }
 
 export async function generateStaticParams() {
-  const responseCategories: {categories: Categorie[]} = await fetchData(categories)
+  const responseCategories: { categories: Categorie[] } = await fetchData(
+    categories
+  )
 
   return responseCategories?.categories.map((category) => ({
     categoryName: category.name,
@@ -22,9 +24,9 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: {
-    params: { categoryName: string }
+  params: { categoryName: string }
 }) {
-  const { posts } = await getPosts(postsByCategory, params.categoryName )
+  const { posts } = await getPosts(postsByCategory, params.categoryName)
 
   return (
     <div className={styles.containerPost}>

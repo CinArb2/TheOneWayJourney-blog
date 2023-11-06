@@ -1,6 +1,6 @@
 import style from '@/styles/PostDetail.module.css'
 import Image from 'next/image'
-import SocialShare from '@/comps/SocialShare'
+import SocialShare from '@/components/social-share'
 import { fetchData } from '@/shared/server/gql.server'
 import { allSlugs, postBySlug } from '@/shared/queries'
 import { notFound } from 'next/navigation'
@@ -8,18 +8,14 @@ import { getPost } from '@/shared/server/get-posts'
 import { Post } from '@/shared/types/posts'
 
 export async function generateStaticParams() {
-  const slugs: { posts: Pick<Post,'slug'>[] } = await fetchData(allSlugs)
+  const slugs: { posts: Pick<Post, 'slug'>[] } = await fetchData(allSlugs)
 
   return slugs?.posts?.map((post) => ({
     slug: post.slug,
   }))
 }
 
-export default async function Page({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const { post } = await getPost(postBySlug, params.slug)
 
   if (!post) {

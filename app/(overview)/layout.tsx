@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from '@/comps/Hero'
+import Hero from '@/components/hero'
 import styles from '@/styles/Home.module.css'
 import FeaturedPosts from '@/components/featured-posts'
 import Author from '@/components/author'
