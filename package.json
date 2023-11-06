@@ -38,8 +38,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
-      "yarn prettier --write ./",
-      "yarn eslint --fix ./"
+      "pnpm prettier --write ./",
+      "pnpm eslint --fix ./"
     ]
   }
 }
