@@ -1,5 +1,5 @@
-import { allSlugs } from '../shared/queries'
-import { fetchData } from '../shared/server/gql.server'
+import { allSlugs } from '@/shared/queries'
+import { fetchData } from '@/shared/server/gql.server'
 
 const URL = process.env.NEXT_PUBLIC_URL ?? 'http://localhost:3000'
 

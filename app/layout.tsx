@@ -1,7 +1,7 @@
-import '../styles/globals.css'
-import Layout from '../comps/Layout'
-import { fetchData } from '../shared/server/gql.server'
-import { categories, logo } from '../shared/queries'
+import '@/styles/globals.css'
+import Layout from '@/comps/Layout'
+import { fetchData } from '@/shared/server/gql.server'
+import { categories, logo } from '@/shared/queries'
 
 export const metadata = {
   title: 'The One Way Journey - Tips',

@@ -1,5 +1,5 @@
 'use client'
-import style from '../styles/SocialShare.module.css'
+import style from '@/styles/SocialShare.module.css'
 import {
   FacebookShareButton,
   FacebookIcon,

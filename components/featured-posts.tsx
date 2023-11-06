@@ -1,7 +1,7 @@
-import style from '../../styles/FeaturedPosts.module.css'
-import FeaturedIndiv from '../../comps/FeaturedIndiv'
-import { fetchData } from '../../shared/server/gql.server'
-import { featuredPosts } from '../../shared/queries'
+import style from '@/styles/FeaturedPosts.module.css'
+import FeaturedIndiv from '@/comps/FeaturedIndiv'
+import { fetchData } from '@/shared/server/gql.server'
+import { featuredPosts } from '@/shared/queries'
 
 export async function getFeaturedPosts() {
   try {

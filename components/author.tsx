@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../../styles/Author.module.css'
+import styles from '@/styles/Author.module.css'
 import Image from 'next/image'
-import { fetchData } from '../../shared/server/gql.server'
-import { author } from '../../shared/queries'
+import { fetchData } from '@/shared/server/gql.server'
+import { author } from '@/shared/queries'
 
 export async function getAuthor() {
   try {

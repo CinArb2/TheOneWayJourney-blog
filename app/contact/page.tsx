@@ -1,8 +1,8 @@
 'use client'
-import styles from '../../styles/Form.module.css'
+import styles from '@/styles/Form.module.css'
 import { useFormState } from 'react-dom'
 import { useFormStatus } from 'react-dom'
-import { sendEmail } from '../lib/action'
+import { sendEmail } from '@/shared/actions/action'
 
 const initialState = {
   name: '',
@@ -26,8 +26,6 @@ const Form = () => {
   console.log(state)
 
   return (
-    <>
-      {/* {submitted && <Modal setSubmitted={setSubmitted} />} */}
       <div className={styles.container}>
         <h1>Contact us</h1>
         <form action={formAction}>
@@ -74,7 +72,6 @@ const Form = () => {
           </p>
         </form>
       </div>
-    </>
   )
 }
 

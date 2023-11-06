@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../../styles/About.module.css'
+import styles from '@/styles/About.module.css'
 import Image from 'next/image'
-import { fetchData } from '../../shared/server/gql.server'
-import { aboutPage } from '../../shared/queries'
+import { fetchData } from '@/shared/server/gql.server'
+import { aboutPage } from '@/shared/queries'
 
 export async function getAboutInfo() {
   try {

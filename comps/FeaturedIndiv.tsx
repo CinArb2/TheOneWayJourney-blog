@@ -1,4 +1,4 @@
-import styles from '../styles/FeaturedIndiv.module.css'
+import styles from '@/styles/FeaturedIndiv.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 

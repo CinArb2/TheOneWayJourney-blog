@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../../../../styles/Home.module.css'
-import PostCard from '../../../../comps/PostCard'
-import { fetchData } from '../../../../shared/server/gql.server'
-import { categories, postsByCategory } from '../../../../shared/queries'
+import styles from '@/styles/Home.module.css'
+import PostCard from '@/comps/PostCard'
+import { fetchData } from '@/shared/server/gql.server'
+import { categories, postsByCategory } from '@/shared/queries'
 
 export async function generateStaticParams() {
   const responseCategories = await fetchData(categories)

@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../../styles/Home.module.css'
-import PostCard from '../../comps/PostCard'
-import { fetchData } from '../../shared/server/gql.server'
-import { posts } from '../../shared/queries'
+import styles from '@/styles/Home.module.css'
+import PostCard from '@/comps/PostCard'
+import { fetchData } from '@/shared/server/gql.server'
+import { posts } from '@/shared/queries'
 
 async function getPosts() {
   try {

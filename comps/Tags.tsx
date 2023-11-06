@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import style from '../styles/Tags.module.css'
+import style from '@/styles/Tags.module.css'
 
 const Tags = ({ tags }) => {
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import style from '../../styles/Tags.module.css'
-import { tags } from '../../shared/queries'
-import { fetchData } from '../../shared/server/gql.server'
+import style from '@/styles/Tags.module.css'
+import { tags } from '@/shared/queries'
+import { fetchData } from '@/shared/server/gql.server'
 
 export async function getTags() {
   try {
