@@ -1,7 +1,13 @@
+'use client'
 import React from 'react'
 import style from '@/styles/Hero.module.css'
+import { useSelectedLayoutSegment } from 'next/navigation'
 
 const Hero = () => {
+  const segment = useSelectedLayoutSegment()
+
+  if (segment) return
+
   return (
     <div className={style.heroContainer}>
       <div className={style.heroContent}>

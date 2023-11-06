@@ -23,55 +23,54 @@ function SubmitButton() {
 
 const Form = () => {
   const [state, formAction] = useFormState(sendEmail, initialState)
-  console.log(state)
 
   return (
-      <div className={styles.container}>
-        <h1>Contact us</h1>
-        <form action={formAction}>
-          <div className={styles.formTop}>
-            <div className={styles.containerHeader}>
-              <label htmlFor="" className={styles.top}>
-                Your name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                required
-                className={styles.inputTop}
-              />
-            </div>
-            <div className={styles.containerHeader}>
-              <label htmlFor="" className={styles.top}>
-                Your email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                className={styles.inputTop}
-              />
-            </div>
-          </div>
-          <div className={styles.formBottom}>
-            <label htmlFor="" className={styles.bottom}>
-              Your message
+    <div className={styles.container}>
+      <h1>Contact us</h1>
+      <form action={formAction}>
+        <div className={styles.formTop}>
+          <div className={styles.containerHeader}>
+            <label htmlFor="" className={styles.top}>
+              Your name
             </label>
-            <textarea
-              name="message"
-              id="message"
+            <input
+              type="text"
+              name="name"
+              id="name"
               required
-              className={styles.inputBottom}
+              className={styles.inputTop}
             />
           </div>
-          <SubmitButton />
-          <p aria-live="polite" className="sr-only" role="status">
-            {state?.message}
-          </p>
-        </form>
-      </div>
+          <div className={styles.containerHeader}>
+            <label htmlFor="" className={styles.top}>
+              Your email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              className={styles.inputTop}
+            />
+          </div>
+        </div>
+        <div className={styles.formBottom}>
+          <label htmlFor="" className={styles.bottom}>
+            Your message
+          </label>
+          <textarea
+            name="message"
+            id="message"
+            required
+            className={styles.inputBottom}
+          />
+        </div>
+        <SubmitButton />
+        <p aria-live="polite" className="sr-only" role="status">
+          {state?.message}
+        </p>
+      </form>
+    </div>
   )
 }
 
