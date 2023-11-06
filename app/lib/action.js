@@ -1,9 +1,13 @@
-/*eslint no-undef: "error"*/
-/*eslint-env node*/
+'use server'
+import { revalidatePath } from 'next/cache'
+// Everything in this file run securily on the server and
+// doesn't get sent to the client
 import nodemailer from 'nodemailer'
 
-export default async function (req, res) {
-  const { email, name, message } = await req.body
+export async function sendEmail(prevState, formData) {
+  const email = formData.get('email')
+  const name = formData.get('name')
+  const message = formData.get('message')
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -31,9 +35,19 @@ export default async function (req, res) {
       if (error) {
         console.log(error)
         reject(error)
+        return {
+          name: '',
+          email: '',
+          message: '',
+        }
       } else {
         console.log('Server is ready to take our messages')
         resolve(success)
+        return {
+          name: '',
+          email: '',
+          message: '',
+        }
       }
     })
   })
@@ -52,13 +66,17 @@ export default async function (req, res) {
       if (err) {
         console.log(err, 'error')
         reject(err)
+        return { message: 'Failed to send email' }
       } else {
         console.log(info)
         resolve(info)
+        // revalidatePath is going to go to the contact page
+        // look for the data that has being cached
+        // see if we did a data mutation
+        // and it will revalidate all the data on that path
+        revalidatePath('/contact')
+        return { message: 'Email sent' }
       }
     })
   })
-
-  res.status(200)
-  res.end()
 }
