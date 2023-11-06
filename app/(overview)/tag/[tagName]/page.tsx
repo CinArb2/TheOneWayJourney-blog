@@ -3,32 +3,23 @@ import styles from '@/styles/Home.module.css'
 import PostCard from '@/comps/PostCard'
 import { fetchData } from '@/shared/server/gql.server'
 import { postByTag, tags } from '@/shared/queries'
+import { Tag } from '@/shared/types/posts'
+import { getPosts } from '@/shared/server/get-posts'
 
 export async function generateStaticParams() {
-  const responseTags = await fetchData(tags)
+  const responseTags: { tags: Tag[] } = await fetchData(tags)
 
   return responseTags?.tags.map((tag) => ({
     tagName: tag.slug,
   }))
 }
 
-async function getPosts(params) {
-  const variable = {
-    slug: params.tagName,
-  }
-  try {
-    const postsRes = await fetchData(postByTag, variable)
-
-    return postsRes
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching posts:', error)
-    throw error // Re-throw the error to propagate it to the caller if needed
-  }
-}
-
-export default async function Page({ params }) {
-  const { posts } = await getPosts(params)
+export default async function Page({
+  params,
+}: {
+    params: { tagName: string }
+}) {
+  const { posts } = await getPosts(postByTag, params.tagName)
 
   return (
     <div className={styles.containerPost}>

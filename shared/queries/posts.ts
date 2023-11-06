@@ -1,4 +1,4 @@
-export const posts = `{
+export const postsQuery = `{
         posts(orderBy:  createdAt_DESC) {
           id
           slug

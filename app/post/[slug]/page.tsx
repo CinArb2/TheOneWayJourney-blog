@@ -4,31 +4,23 @@ import SocialShare from '@/comps/SocialShare'
 import { fetchData } from '@/shared/server/gql.server'
 import { allSlugs, postBySlug } from '@/shared/queries'
 import { notFound } from 'next/navigation'
-
-export async function getPost(params) {
-  const variable = {
-    slug: params.slug,
-  }
-  try {
-    const post = await fetchData(postBySlug, variable)
-    return post
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching post:', error)
-    throw error // Re-throw the error to propagate it to the caller if needed
-  }
-}
+import { getPost } from '@/shared/server/get-posts'
+import { Post } from '@/shared/types/posts'
 
 export async function generateStaticParams() {
-  const slugs = await fetchData(allSlugs)
+  const slugs: { posts: Pick<Post,'slug'>[] } = await fetchData(allSlugs)
 
   return slugs?.posts?.map((post) => ({
     slug: post.slug,
   }))
 }
 
-export default async function Page({ params }) {
-  const { post } = await getPost(params)
+export default async function Page({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const { post } = await getPost(postBySlug, params.slug)
 
   if (!post) {
     notFound()
