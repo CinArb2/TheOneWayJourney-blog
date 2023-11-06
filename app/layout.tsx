@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/globals.css'
 import Layout from '../comps/Layout'
 import { fetchData } from '../shared/server/gql.server'
@@ -21,7 +20,11 @@ async function getInitialData() {
   }
 }
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const { logo, categories } = await getInitialData()
 
   return (
