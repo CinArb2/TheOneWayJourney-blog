@@ -13,6 +13,7 @@
     "clean": "rimraf .next node_modules && pnpm install"
   },
   "dependencies": {
+    "framer-motion": "^10.16.4",
     "graphql": "^16.5.0",
     "graphql-request": "^4.2.0",
     "next": "^14.0.1",
