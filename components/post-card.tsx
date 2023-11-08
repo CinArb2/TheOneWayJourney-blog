@@ -1,13 +1,25 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import style from '@/styles/PostCard.module.css'
 import { SummaryPost } from '@/shared/types/posts'
+import { useRef } from 'react'
+import { useInView } from 'framer-motion'
 
 const PostCard = ({ post }: { post: SummaryPost }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+
   return (
-    <div className={style.cardWrapper}>
+    <div className={style.cardWrapper} ref={ref}>
       <Link href={`/post/${post.slug}/`}>
-        <div>
+        <div
+          style={{
+            transform: isInView ? 'none' : 'translateX(-200px)',
+            opacity: isInView ? 1 : 0,
+            transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+          }}
+        >
           <div className={style.imageWrapper}>
             <div className={style.overlayBg}></div>
             <Image
@@ -26,8 +38,7 @@ const PostCard = ({ post }: { post: SummaryPost }) => {
                 </span>
               ))}
               <h2 className={style.title}>
-                {' '}
-                <span>{post.title}</span>{' '}
+                <span>{post.title}</span>
               </h2>
             </div>
           </div>
@@ -36,9 +47,7 @@ const PostCard = ({ post }: { post: SummaryPost }) => {
             <p>{post.summary}</p>
           </div>
 
-          {/* <Link href={`/post/${post.slug}/`}>
-            <button className={style.buttonCard}>Read More</button>
-          </Link> */}
+          <button className={style.buttonCard}>Read More</button>
         </div>
       </Link>
     </div>
