@@ -2,6 +2,15 @@ import '@/styles/globals.css'
 import Layout from '@/components/layout'
 import { fetchData } from '@/shared/server/gql.server'
 import { categories, logo } from '@/shared/queries'
+import { Raleway } from 'next/font/google'
+import { GeistSans } from 'geist/font'
+
+const raleway = Raleway({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-raleway',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'The One Way Journey - Tips',
@@ -28,7 +37,7 @@ export default async function RootLayout({
   const { logo, categories } = await getInitialData()
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${raleway.variable} ${GeistSans.variable}`}>
       <body>
         <Layout menu={categories} logo={logo}>
           {children}
