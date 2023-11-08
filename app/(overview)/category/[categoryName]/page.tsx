@@ -30,6 +30,12 @@ export default async function Page({
 
   return (
     <div className={styles.containerPost}>
+      {posts.length === 0 && (
+        <div className={styles.containerTags}>
+          <h2>No entries for category:</h2>
+          {<span className={styles.tagIndv}>{params.categoryName}</span>}
+        </div>
+      )}
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
