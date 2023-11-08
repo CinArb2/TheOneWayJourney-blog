@@ -7,6 +7,7 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+
 .footerLogo {
   align-self: center;
 }
@@ -55,9 +56,13 @@
   max-width: 200px;
   align-self: center;
 }
+
 .quickLinks,
 .category {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 @media screen and (max-width: 768px) {
@@ -69,6 +74,7 @@
   .footerDescription {
     max-width: none;
   }
+
   .quickLinks,
   .category {
     display: block;
