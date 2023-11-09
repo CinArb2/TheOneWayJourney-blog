@@ -1,17 +1,17 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostCard from '@/components/post-card'
-import { postsQuery } from '@/shared/queries'
-import { getPosts } from '@/shared/server/get-posts'
+import PostList from '@/components/post-list'
+import { getPostList } from '@/shared/actions/posts'
 
 export default async function Home() {
-  const { posts } = await getPosts(postsQuery)
+  const variables = {
+    first: 5,
+  }
+  const data = await getPostList(variables)
 
   return (
     <div className={styles.containerPost}>
-      {posts?.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      <PostList data={data} />
     </div>
   )
 }

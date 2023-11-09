@@ -2,7 +2,7 @@
 import styles from '@/styles/Form.module.css'
 import { useFormState } from 'react-dom'
 import { useFormStatus } from 'react-dom'
-import { sendEmail } from '@/shared/actions/action'
+import { sendEmail } from '@/shared/actions/send-email'
 
 const initialState = {
   name: '',

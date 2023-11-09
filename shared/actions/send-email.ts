@@ -68,7 +68,6 @@ export async function sendEmail(prevState: any, formData: FormData) {
         reject(err)
         return { message: 'Failed to send email' }
       } else {
-        console.log(info)
         resolve(info)
         // revalidatePath is going to go to the contact page
         // look for the data that has being cached

@@ -1,29 +1,29 @@
 export const postBySlug = `
     query MyQuery($slug: String = "") {
-    post(where: {slug: $slug}){
-      id
-      title
-      date
-      author {
-    	  id
-        name
-        avatar {
+      post(where: {slug: $slug}){
+        id
+        title
+        date
+        author {
           id
-          url
-        }
-    	}
-          content {
-            html
-          }
-          slug
-          featuredImage {
+          name
+          avatar {
             id
             url
           }
-          tags {
-            id
-            name
-          }
+        }
+        content {
+          html
+        }
+        slug
+        featuredImage {
+          id
+          url
+        }
+        tags {
+          id
+          name
+        }
+      }
     }
-  }
     `

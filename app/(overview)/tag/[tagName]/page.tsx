@@ -6,6 +6,8 @@ import { postByTag, tags } from '@/shared/queries'
 import { Tag } from '@/shared/types/posts'
 import { getPosts } from '@/shared/server/get-posts'
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const responseTags: { tags: Tag[] } = await fetchData(tags)
 
