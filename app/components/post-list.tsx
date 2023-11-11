@@ -11,7 +11,7 @@ export default function PostList({ data }: { data: any }) {
   const { edges, pageInfo } = data.postsConnection
   const [postList, setPostList] = useState(edges)
   const [pagination, setPagination] = useState(pageInfo)
-  const [isPending, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
 
   const handleClick = async () => {
     const variable = {
