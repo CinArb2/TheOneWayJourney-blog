@@ -7,6 +7,8 @@ import { notFound } from 'next/navigation'
 import { getPost } from '@/shared/server/get-posts'
 import { Post } from '@/shared/types/posts'
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const slugs: { posts: Pick<Post, 'slug'>[] } = await fetchData(allSlugs)
 
