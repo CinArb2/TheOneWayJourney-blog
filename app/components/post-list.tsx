@@ -1,6 +1,6 @@
 'use client'
 
-import { getPostList } from '@/shared/actions/posts'
+import { getPostList } from '../actions/posts'
 import PostCard from './post-card'
 import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -16,7 +16,6 @@ export default function PostList({ data }: { data: any }) {
       first: pagination.pageSize + 5,
       before: pagination.endCursor,
     }
-
     const postRes = await getPostList(variable)
 
     setPostList(postRes.postsConnection.edges)

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostCard from '@/components/post-card'
+import PostCard from '@/app/components/post-card'
 import { fetchData } from '@/shared/server/gql.server'
 import { postByTag, tags } from '@/shared/queries'
 import { Tag } from '@/shared/types/posts'

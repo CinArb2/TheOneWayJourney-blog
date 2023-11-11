@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
-import PostList from '@/components/post-list'
-import { getPostList } from '@/shared/actions/posts'
+import PostList from '@/app/components/post-list'
+import { getPostList } from '../actions/posts'
 
 export default async function Home() {
   const variables = {

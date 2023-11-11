@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { fetchData } from '@/shared/server/gql.server'
 import { aboutPage } from '@/shared/queries'
 
-export async function getAboutInfo() {
+async function getAboutInfo() {
   try {
     const aboutPageData = await fetchData(aboutPage)
     return aboutPageData?.aboutPages?.[0]

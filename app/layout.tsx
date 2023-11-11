@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import Layout from '@/components/layout'
+import Layout from '@/app/components/layout'
 import { fetchData } from '@/shared/server/gql.server'
 import { categories, logo } from '@/shared/queries'
 import { Raleway } from 'next/font/google'

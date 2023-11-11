@@ -1,6 +1,6 @@
 import style from '@/styles/PostDetail.module.css'
 import Image from 'next/image'
-import SocialShare from '@/components/social-share'
+import SocialShare from '@/app/components/social-share'
 import { fetchData } from '@/shared/server/gql.server'
 import { allSlugs, postBySlug } from '@/shared/queries'
 import { notFound } from 'next/navigation'
