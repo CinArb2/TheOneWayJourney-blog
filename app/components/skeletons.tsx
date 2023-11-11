@@ -12,3 +12,20 @@ export function PostCardSkeleton() {
     </div>
   )
 }
+
+export const ContactSkeleton = () => {
+  return (
+    <div className="flex flex-col space-y-6 items-center p-6 w-1/2 mx-auto">
+      <div className="bg-gray-300 h-20 w-1/2 mb-4 shimmer rounded-md"></div>{' '}
+      {/* Title */}
+      <div className="flex justify-between w-full">
+        <div className="bg-gray-300 h-12 w-1/2 mr-2 shimmer rounded-md"></div>{' '}
+        {/* Your name */}
+        <div className="bg-gray-300 h-12 w-1/2 ml-2 shimmer rounded-md"></div>{' '}
+        {/* Your email */}
+      </div>
+      <div className="bg-gray-300 h-56 w-full shimmer rounded-md"></div>{' '}
+      {/* Your message */}
+    </div>
+  )
+}
