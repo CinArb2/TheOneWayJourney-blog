@@ -5,11 +5,13 @@ import PostCard from './post-card'
 import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { PostCardSkeleton } from './skeletons'
+import { useTransition } from 'react'
 
 export default function PostList({ data }: { data: any }) {
   const { edges, pageInfo } = data.postsConnection
   const [postList, setPostList] = useState(edges)
   const [pagination, setPagination] = useState(pageInfo)
+  const [isPending, startTransition] = useTransition()
 
   const handleClick = async () => {
     const variable = {
@@ -25,8 +27,8 @@ export default function PostList({ data }: { data: any }) {
   return (
     <div>
       <InfiniteScroll
-        dataLength={pagination?.pageSize}
-        next={handleClick}
+        dataLength={postList.length} // items that are currently being rendered
+        next={() => startTransition(handleClick)}
         hasMore={pagination?.hasNextPage}
         loader={<PostCardSkeleton />}
       >
