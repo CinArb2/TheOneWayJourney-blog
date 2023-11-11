@@ -5,7 +5,6 @@ import { fetchData } from '@/shared/server/gql.server'
 import { categories, postsByCategory } from '@/shared/queries'
 import { getPosts } from '@/shared/server/get-posts'
 
-export const dynamicParams = false
 interface Categorie {
   slug: string
   name: string
