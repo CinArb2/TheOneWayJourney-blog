@@ -27,7 +27,7 @@ export default function PostList({ data }: { data: any }) {
     <div>
       <InfiniteScroll
         dataLength={pagination?.pageSize}
-        next={() => handleClick()}
+        next={handleClick}
         hasMore={pagination?.hasNextPage}
         loader={<PostCardSkeleton />}
       >
