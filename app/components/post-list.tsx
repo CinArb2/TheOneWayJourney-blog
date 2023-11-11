@@ -2,7 +2,7 @@
 
 import { getPostList } from '../actions/posts'
 import PostCard from './post-card'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { PostCardSkeleton } from './skeletons'
 import { useTransition } from 'react'
@@ -12,6 +12,10 @@ export default function PostList({ data }: { data: any }) {
   const [postList, setPostList] = useState(edges)
   const [pagination, setPagination] = useState(pageInfo)
   const [, startTransition] = useTransition()
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   const handleClick = async () => {
     const variable = {
