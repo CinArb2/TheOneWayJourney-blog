@@ -4,6 +4,7 @@ import { fetchData } from '@/shared/server/gql.server'
 import { categories, logo } from '@/shared/queries'
 import { Raleway } from 'next/font/google'
 import { GeistSans } from 'geist/font'
+import { Toaster } from '@/components/ui/toaster'
 
 const raleway = Raleway({
   weight: '400',
@@ -41,6 +42,7 @@ export default async function RootLayout({
       <body>
         <Layout menu={categories} logo={logo}>
           {children}
+          <Toaster />
         </Layout>
       </body>
     </html>

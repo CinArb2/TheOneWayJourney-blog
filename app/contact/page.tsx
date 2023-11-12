@@ -3,11 +3,14 @@ import styles from '@/styles/Form.module.css'
 import { useFormState } from 'react-dom'
 import { useFormStatus } from 'react-dom'
 import { sendEmail } from '@/app/actions/send-email'
+import { useToast } from '@/components/ui/use-toast'
+import { useEffect, useRef } from 'react'
 
 const initialState = {
   name: '',
   email: '',
   message: '',
+  success: '',
 }
 
 function SubmitButton() {
@@ -23,11 +26,26 @@ function SubmitButton() {
 
 const Form = () => {
   const [state, formAction] = useFormState(sendEmail, initialState)
+  const { toast } = useToast()
+  const ref = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (state.success !== '') {
+      toast({
+        variant: state.success ? 'default' : 'destructive',
+        title: state.success
+          ? 'Form submitted successfully!'
+          : 'Oops! Something went wrong',
+        description: state.message,
+      })
+      ref.current?.reset()
+    }
+  }, [state, toast])
 
   return (
     <div className={styles.container}>
       <h1>Contact us</h1>
-      <form action={formAction}>
+      <form action={formAction} ref={ref}>
         <div className={styles.formTop}>
           <div className={styles.containerHeader}>
             <label htmlFor="" className={styles.top}>
