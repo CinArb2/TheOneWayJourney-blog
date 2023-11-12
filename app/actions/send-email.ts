@@ -1,5 +1,4 @@
 'use server'
-import { revalidatePath } from 'next/cache'
 // Everything in this file run securily on the server and
 // doesn't get sent to the client
 import nodemailer from 'nodemailer'
@@ -41,9 +40,16 @@ export async function sendEmail(prevState: any, formData: FormData) {
   try {
     await transporter.sendMail(mailData)
 
-    return { success: true, message: 'Email sent' }
+    return {
+      success: true,
+      message: ` We will be in touch soon.`,
+    }
   } catch (error) {
     console.log(error)
-    return { success: false, message: 'Email failed' }
+    return {
+      success: false,
+      message:
+        'There was an error processing your form. Please fill it out again',
+    }
   }
 }
