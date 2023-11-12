@@ -29,29 +29,6 @@ export async function sendEmail(prevState: any, formData: FormData) {
     secure: false,
   })
 
-  await new Promise((resolve, reject) => {
-    // verify connection configuration
-    transporter.verify(function (error, success) {
-      if (error) {
-        console.log(error)
-        reject(error)
-        return {
-          name: '',
-          email: '',
-          message: '',
-        }
-      } else {
-        console.log('Server is ready to take our messages')
-        resolve(success)
-        return {
-          name: '',
-          email: '',
-          message: '',
-        }
-      }
-    })
-  })
-
   const mailData = {
     from: process.env.EMAIL,
     to: process.env.EMAIL,
@@ -61,21 +38,12 @@ export async function sendEmail(prevState: any, formData: FormData) {
     ${email}</p>`,
   }
 
-  await new Promise((resolve, reject) => {
-    transporter.sendMail(mailData, function (err, info) {
-      if (err) {
-        console.log(err, 'error')
-        reject(err)
-        return { message: 'Failed to send email' }
-      } else {
-        resolve(info)
-        // revalidatePath is going to go to the contact page
-        // look for the data that has being cached
-        // see if we did a data mutation
-        // and it will revalidate all the data on that path
-        revalidatePath('/contact')
-        return { message: 'Email sent' }
-      }
-    })
-  })
+  try {
+    await transporter.sendMail(mailData)
+
+    return { success: true, message: 'Email sent' }
+  } catch (error) {
+    console.log(error)
+    return { success: false, message: 'Email failed' }
+  }
 }

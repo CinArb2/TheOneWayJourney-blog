@@ -15,8 +15,8 @@ function SubmitButton() {
   const { pending } = useFormStatus()
 
   return (
-    <button type="submit" aria-disabled={pending}>
-      {pending ? 'Pending...' : 'Sent'}
+    <button type="submit" aria-disabled={pending} disabled={pending}>
+      Sent
     </button>
   )
 }
@@ -66,9 +66,6 @@ const Form = () => {
           />
         </div>
         <SubmitButton />
-        <p aria-live="polite" className="sr-only" role="status">
-          {state?.message}
-        </p>
       </form>
     </div>
   )
