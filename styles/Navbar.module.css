@@ -3,7 +3,6 @@
   top: 0;
   z-index: 1000;
   background-color: white;
-  transition: transform 400ms ease-in-out;
 }
 
 .Navbar {
@@ -110,7 +109,6 @@ a.active {
 }
 
 .hide {
-  /* visibility: hidden; */
   display: none;
 }
 
@@ -121,9 +119,6 @@ a.active {
   margin: 0 auto;
 }
 
-.headerContainer.active {
-  transform: translateY(-110px);
-}
 
 @media screen and (max-width: 1150px) {
   .headerContainer {

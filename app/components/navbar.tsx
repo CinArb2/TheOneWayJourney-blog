@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import style from '@/styles/Navbar.module.css'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Category } from '@/shared/types/posts'
 import {
   useMotionValueEvent,
@@ -9,25 +9,34 @@ import {
   AnimatePresence,
   motion,
 } from 'framer-motion'
+import { useWindowSize } from '@uidotdev/usehooks'
 
 const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
   const { scrollY } = useScroll()
+  const ref = useRef<HTMLHeadingElement>(null)
   const [hideHeader, setHideHeader] = useState(false)
   const [open, setOpen] = useState(false)
+  const size = useWindowSize()
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    if (latest > 150) {
-      setHideHeader(true)
+    const $header = ref.current
+
+    if (!$header || !size.width) return
+
+    const currScrollY = scrollY.get()
+    const offsetHeight = $header?.offsetHeight
+    setHideHeader(currScrollY > offsetHeight)
+
+    if (currScrollY > offsetHeight && size.width > 1150) {
+      $header.style.top = `-${offsetHeight - 100}px`
     } else {
-      setHideHeader(false)
+      $header.style.top = `0`
     }
   })
 
   return (
     <>
-      <header
-        className={`${style.headerContainer} ${hideHeader ? style.active : ''}`}
-      >
+      <header ref={ref} className={`${style.headerContainer}`}>
         <Link href="/">
           <div className={style.logoContainer}>
             <Image
@@ -49,7 +58,7 @@ const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
                 initial={{ x: -300, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -300, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 layout
               >
                 <Link href="/">
