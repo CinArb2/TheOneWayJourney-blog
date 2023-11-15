@@ -1,7 +1,7 @@
 .headerContainer {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 900;
   background-color: white;
 }
 
@@ -162,6 +162,14 @@ a.active {
     font-size: 1.5rem;
     color: white;
     margin-block: 0.5rem;
+  }
+
+  .backdrop{
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    background: #ffffff5e;
+    z-index: 1000;
   }
 
   /* MENU css */

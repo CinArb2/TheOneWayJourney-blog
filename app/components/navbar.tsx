@@ -11,6 +11,34 @@ import {
 } from 'framer-motion'
 import { useWindowSize } from '@uidotdev/usehooks'
 
+const itemVariants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
+  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+}
+
+const navVariant = {
+  open: {
+    transition: {
+      type: 'spring',
+      bounce: 0,
+      duration: 0.7,
+      delayChildren: 0.3,
+      staggerChildren: 0.05,
+    },
+  },
+  closed: {
+    transition: {
+      type: 'spring',
+      bounce: 0,
+      duration: 0.3,
+    },
+  },
+}
+
 const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
   const { scrollY } = useScroll()
   const ref = useRef<HTMLHeadingElement>(null)
@@ -36,6 +64,9 @@ const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
 
   return (
     <>
+      {open && (
+        <div className={style.backdrop} onClick={() => setOpen(false)}></div>
+      )}
       <header ref={ref} className={`${style.headerContainer}`}>
         <Link href="/">
           <div className={style.logoContainer}>
@@ -97,21 +128,34 @@ const Navbar = ({ menu, logo }: { menu: Category[]; logo: string }) => {
           </AnimatePresence>
         </nav>
       </header>
-
-      <nav className={`${style.NavbarMobile} ${open ? style.active : ''}`}>
-        {menu.map((menuItem) => {
-          return (
-            <Link key={menuItem.id} href={`/category/${menuItem.slug}`}>
-              {menuItem.name}
-            </Link>
-          )
-        })}
-      </nav>
-      <div className={style.menu} onClick={() => setOpen((prev) => !prev)}>
-        <span className={open ? style.active : ''}></span>
-        <span className={open ? style.active : ''}></span>
-        <span className={open ? style.active : ''}></span>
-      </div>
+      <motion.div initial={false} animate={open ? 'open' : 'closed'}>
+        <motion.nav
+          className={`${style.NavbarMobile} ${open ? style.active : ''}`}
+          variants={navVariant}
+        >
+          {menu.map((menuItem) => {
+            return (
+              <motion.div key={menuItem.id} variants={itemVariants}>
+                <Link
+                  href={`/category/${menuItem.slug}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {menuItem.name}
+                </Link>
+              </motion.div>
+            )
+          })}
+        </motion.nav>
+        <motion.div
+          whileTap={{ scale: 0.8 }}
+          className={style.menu}
+          onClick={() => setOpen(!open)}
+        >
+          <span className={open ? style.active : ''}></span>
+          <span className={open ? style.active : ''}></span>
+          <span className={open ? style.active : ''}></span>
+        </motion.div>
+      </motion.div>
     </>
   )
 }
