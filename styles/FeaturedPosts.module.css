@@ -5,6 +5,7 @@
 
 .asideTitle {
   position: relative;
+  font-size: x-large;
 }
 
 .asideTitle::before {

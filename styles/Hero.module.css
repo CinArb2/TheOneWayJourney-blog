@@ -30,6 +30,9 @@
 .heroText span {
   background-color: white;
   padding-inline: 0.7rem;
+  font-size: x-large;
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 500;
 }
 
 .heroVideoContainer {
@@ -61,8 +64,12 @@
 }
 
 @media screen and (max-width: 670px) {
+  .heroVideoContainer{
+    height: 40vh;
+  }
   .heroVideo {
     width: 200%;
     height: 150%;
+    object-fit: cover;
   }
 }

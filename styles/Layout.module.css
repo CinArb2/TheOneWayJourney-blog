@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  background-color: #f9f9ff;
 }
 .wavesLayout {
   font-size: 0;
