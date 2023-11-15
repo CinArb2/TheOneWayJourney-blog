@@ -39,6 +39,7 @@
   height: 40px;
   background-color: #f0f2f5;
   border: none;
+  padding: 10px;
 }
 
 .formBottom {
@@ -55,6 +56,7 @@
   background-color: #f0f2f5;
   border: none;
   min-height: 200px;
+  padding: 10px;
 }
 
 .container button {
