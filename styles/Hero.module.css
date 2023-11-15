@@ -64,8 +64,12 @@
 }
 
 @media screen and (max-width: 670px) {
+  .heroVideoContainer{
+    height: 40vh;
+  }
   .heroVideo {
     width: 200%;
     height: 150%;
+    object-fit: cover;
   }
 }
